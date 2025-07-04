@@ -1,0 +1,9 @@
+{
+  "name": "sgs-golf-commitlint",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.3.0"
+  }
+}

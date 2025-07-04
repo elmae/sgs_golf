@@ -1,0 +1,65 @@
+name: Flutter CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+      - name: Validar nombre de rama
+        run: |
+          BRANCH_NAME="${GITHUB_REF##*/}"
+          if [[ ! "$BRANCH_NAME" =~ ^(feature/|fix/|hotfix/|main$|develop$) ]]; then
+            echo "ERROR: El nombre de la rama '$BRANCH_NAME' no cumple con los prefijos permitidos (feature/, fix/, hotfix/, main, develop)."
+            exit 1
+          fi
+        uses: actions/checkout@v4
+
+      - name: Validate Conventional Commit message
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install commitlint dependencies
+        run: npm ci
+        working-directory: .github/commitlint
+      - name: Lint commit message (Conventional Commits)
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "$COMMIT_MSG" | npx --prefix .github/commitlint commitlint
+        working-directory: .github/commitlint
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Check code formatting
+        run: flutter format --set-exit-if-changed .
+
+      - name: Analyze project source
+        run: flutter analyze
+
+      - name: Run tests with coverage
+        run: flutter test --coverage
+      - name: Enforce minimum coverage (80%)
+        run: |
+          sudo apt-get update && sudo apt-get install -y lcov
+          COVERAGE=$(lcov --summary coverage/lcov.info | grep -Po 'lines\.*: \K[0-9.]+(?=%)')
+          echo "Coverage: $COVERAGE%"
+          if (( $(echo "$COVERAGE < 80" | bc -l) )); then
+            echo "ERROR: La cobertura es menor al 80%."
+            exit 1
+          fi

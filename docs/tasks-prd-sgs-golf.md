@@ -102,16 +102,20 @@
     - [x] 1.6.2 Configurar `app_router.dart` con navegación basada en Navigator 2.0
     - [x] 1.6.3 Implementar esquema de rutas nombradas para todas las pantallas
   - [ ] 1.7 Configurar análisis estático y CI:
-    - [ ] 1.7.1 Personalizar `analysis_options.yaml` para reglas de estilo específicas
+    - [x] 1.7.1 Personalizar `analysis_options.yaml` para reglas de estilo específicas
   - [ ] 1.8 Configurar CI/CD con GitHub Actions
-    - [ ] 1.8.1 Crear directorio `.github/workflows` con archivo CI para pruebas automatizadas
-    - [ ] 1.8.2 Añadir paso de verificación de formato con flutter format .
-    - [ ] 1.8.3 Configurar validación de lint con flutter analyze
-    - [ ] 1.8.4 Ejecutar flutter test para pruebas unitarias y de widgets
+    - [x] 1.8.1 Crear directorio `.github/workflows` con archivo CI para pruebas automatizadas
+    - [x] 1.8.2 Configurar reporte de cobertura con flutter test --coverage y Coveralls
+    - [x] 1.8.3 Añadir paso de verificación de formato con flutter format .
+    - [x] 1.8.4 Configurar validación de lint con flutter analyze
+    - [x] 1.8.5 Ejecutar flutter test --coverage para pruebas unitarias y de widgets
+    - [x] 1.8.6 Validar cobertura mínima
+    - [x] 1.8.7 Enforce commits semánticos
+    - [x] 1.8.8 Validar estructura de ramas (feature/, fix/, hotfix/)
   - [ ] 1.9 Actualizar README.md
-    - [ ] 1.9.1 Documentar arquitectura del proyecto
-    - [ ] 1.9.2 Documentar flujo de datos entre providers y repositorios
-    - [ ] 1.9.3 Documentar comandos útiles para agentes IA
+    - [x] 1.9.1 Documentar arquitectura del proyecto
+    - [x] 1.9.2 Documentar flujo de datos entre providers y repositorios
+    - [x] 1.9.3 Documentar comandos útiles para agentes IA
 
 - [ ] 2.0 Implementación del Módulo de Autenticación y Gestión de Usuario
   - [ ] 2.1 Modelado de datos del usuario:
