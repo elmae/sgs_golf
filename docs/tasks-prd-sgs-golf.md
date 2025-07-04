@@ -98,9 +98,9 @@
     - [x] 1.5.2 Registrar adaptadores en `main.dart`
     - [x] 1.5.3 Inicializar Hive y abrir las cajas necesarias
   - [ ] 1.6 Implementar tema y enrutamiento:
-    - [ ] 1.6.1 Crear `app_theme.dart` con la paleta naranja, azul, verde y gris
-    - [ ] 1.6.2 Configurar `app_router.dart` con navegación basada en Navigator 2.0
-    - [ ] 1.6.3 Implementar esquema de rutas nombradas para todas las pantallas
+    - [x] 1.6.1 Crear `app_theme.dart` con la paleta naranja, azul, verde y gris
+    - [x] 1.6.2 Configurar `app_router.dart` con navegación basada en Navigator 2.0
+    - [x] 1.6.3 Implementar esquema de rutas nombradas para todas las pantallas
   - [ ] 1.7 Configurar análisis estático y CI:
     - [ ] 1.7.1 Personalizar `analysis_options.yaml` para reglas de estilo específicas
   - [ ] 1.8 Configurar CI/CD con GitHub Actions
