@@ -78,16 +78,16 @@
     - [x] 1.2.1 Inicializar el repositorio con `git init` en la carpeta `devgolf/sgs_golf`.
     - [x] 1.2.2 Crear un archivo `.gitignore` con las exclusiones típicas para un proyecto Flutter.
     - [ ] 1.2.3 ``
-    - [ ] 1.2.4 Añadir `.gitignore` al stage y realizar el primer commit con `git add .` y `git commit -m "feat: initial commit"`.
-    - [ ] 1.2.5 Agregar el repositorio remoto con `git remote add origin git@github.com:elmae/sgs_golf.git`.
-    - [ ] 1.2.6 Crear la rama `main`, y subirla al remoto con `git checkout -b main` y `git push -u origin main`.
-    - [ ] 1.2.7 Crear la rama `develop`, y subirla al remoto con `git checkout -b develop` y `git push -u origin develop`.
+    - [x] 1.2.4 Añadir `.gitignore` al stage y realizar el primer commit con `git add .` y `git commit -m "feat: initial commit"`.
+    - [x] 1.2.5 Agregar el repositorio remoto con `git remote add origin git@github.com:elmae/sgs_golf.git`.
+    - [x] 1.2.6 Crear la rama `main`, y subirla al remoto con `git checkout -b main` y `git push -u origin main`.
+    - [x] 1.2.7 Crear la rama `develop`, y subirla al remoto con `git checkout -b develop` y `git push -u origin develop`.
   - [ ] 1.3 Configurar `pubspec.yaml` con las dependencias precisas:
-    - [ ] 1.3.1 Base de datos local: `hive: ^2.2.3`, `hive_flutter: ^1.1.0`, `path_provider: ^2.1.1`
-    - [ ] 1.3.2 Gestión de estado: `provider: ^6.1.1` (o `flutter_riverpod: ^2.4.9` si se prefiere)
-    - [ ] 1.3.3 Visualización: `fl_chart: ^0.65.0` para gráficos
-    - [ ] 1.3.4 Exportación: `csv: ^5.1.1`, `file_picker: ^6.1.1`, `path_provider: ^2.1.1` 
-    - [ ] 1.3.5 Desarrollo: `flutter_lints: ^3.0.1`, `mocktail: ^1.0.2` para pruebas
+    - [x] 1.3.1 Base de datos local: `hive: ^2.2.3`, `hive_flutter: ^1.1.0`, `path_provider: ^2.1.1`
+    - [x] 1.3.2 Gestión de estado: `provider: ^6.1.1` (o `flutter_riverpod: ^2.4.9` si se prefiere)
+    - [x] 1.3.3 Visualización: `fl_chart: ^0.65.0` para gráficos
+    - [x] 1.3.4 Exportación: `csv: ^5.1.1`, `file_picker: ^6.1.1`, `path_provider: ^2.1.1`
+    - [x] 1.3.5 Desarrollo: `flutter_lints: ^3.0.1`, `mocktail: ^1.0.2` para pruebas
   - [ ] 1.4 Crear la estructura de carpetas siguiendo arquitectura modular:
     - [ ] 1.4.1 Carpetas core: `lib/core/constants`, `lib/core/theme`, `lib/core/navigation`, `lib/core/errors`
     - [ ] 1.4.2 Carpetas de datos: `lib/data/models`, `lib/data/repositories`, `lib/data/services`
