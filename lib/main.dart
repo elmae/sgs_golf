@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'data/models/user.dart';
-import 'data/models/golf_club.dart';
-import 'data/models/shot.dart';
-import 'data/models/practice_session.dart';
+import 'package:sgs_golf/data/models/golf_club.dart';
+import 'package:sgs_golf/data/models/practice_session.dart';
+import 'package:sgs_golf/data/models/shot.dart';
+import 'package:sgs_golf/data/models/user.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
