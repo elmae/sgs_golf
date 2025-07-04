@@ -89,10 +89,10 @@
     - [x] 1.3.4 Exportación: `csv: ^5.1.1`, `file_picker: ^6.1.1`, `path_provider: ^2.1.1`
     - [x] 1.3.5 Desarrollo: `flutter_lints: ^3.0.1`, `mocktail: ^1.0.2` para pruebas
   - [ ] 1.4 Crear la estructura de carpetas siguiendo arquitectura modular:
-    - [ ] 1.4.1 Carpetas core: `lib/core/constants`, `lib/core/theme`, `lib/core/navigation`, `lib/core/errors`
-    - [ ] 1.4.2 Carpetas de datos: `lib/data/models`, `lib/data/repositories`, `lib/data/services`
-    - [ ] 1.4.3 Features principales: `lib/features/auth`, `lib/features/practice`, `lib/features/dashboard`, `lib/features/analysis`, `lib/features/export`
-    - [ ] 1.4.4 Componentes compartidos: `lib/shared/widgets`, `lib/shared/utils`
+    - [x] 1.4.1 Carpetas core: `lib/core/constants`, `lib/core/theme`, `lib/core/navigation`, `lib/core/errors`
+    - [x] 1.4.2 Carpetas de datos: `lib/data/models`, `lib/data/repositories`, `lib/data/services`
+    - [x] 1.4.3 Features principales: `lib/features/auth`, `lib/features/practice`, `lib/features/dashboard`, `lib/features/analysis`, `lib/features/export`
+    - [x] 1.4.4 Componentes compartidos: `lib/shared/widgets`, `lib/shared/utils`
   - [ ] 1.5 Configurar Hive para persistencia de datos:
     - [ ] 1.5.1 Crear adaptadores de Hive para los modelos `@HiveType`
     - [ ] 1.5.2 Registrar adaptadores en `main.dart`
