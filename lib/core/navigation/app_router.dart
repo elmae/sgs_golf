@@ -1,4 +1,5 @@
 /// app_router.dart
+library app_router;
 ///
 /// Esquema centralizado de rutas nombradas para la navegación principal de la app SGS Golf.
 ///
@@ -39,12 +40,14 @@ class AppRoutes {
 // RouterDelegate y RouteInformationParser para Navigator 2.0
 class AppRouterDelegate extends RouterDelegate<RouteSettings>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<RouteSettings> {
+  @override
   final GlobalKey<NavigatorState> navigatorKey;
 
   RouteSettings _current;
 
   AppRouterDelegate() : navigatorKey = GlobalKey<NavigatorState>(), _current = const RouteSettings(name: AppRoutes.login);
 
+  @override
   RouteSettings get currentConfiguration => _current;
 
   @override
@@ -87,7 +90,7 @@ class AppRouterDelegate extends RouterDelegate<RouteSettings>
 class AppRouteInformationParser extends RouteInformationParser<RouteSettings> {
   @override
   Future<RouteSettings> parseRouteInformation(RouteInformation routeInformation) async {
-    final uri = Uri.parse(routeInformation.location ?? '');
+    final uri = routeInformation.uri;
     switch (uri.path) {
       case AppRoutes.login:
         return const RouteSettings(name: AppRoutes.login);
@@ -108,6 +111,6 @@ class AppRouteInformationParser extends RouteInformationParser<RouteSettings> {
 
   @override
   RouteInformation? restoreRouteInformation(RouteSettings configuration) {
-    return RouteInformation(location: configuration.name);
+    return RouteInformation(uri: configuration.name != null ? Uri.parse(configuration.name!) : null);
   }
 }
