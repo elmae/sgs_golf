@@ -1,6 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'data/models/user.dart';
+import 'data/models/golf_club.dart';
+import 'data/models/shot.dart';
+import 'data/models/practice_session.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(UserAdapter());
+  Hive.registerAdapter(GolfClubAdapter());
+  Hive.registerAdapter(ShotAdapter());
+  Hive.registerAdapter(PracticeSessionAdapter());
+
+  await Hive.openBox<User>('users');
+  await Hive.openBox<GolfClub>('golfClubs');
+  await Hive.openBox<Shot>('shots');
+  await Hive.openBox<PracticeSession>('practiceSessions');
+
   runApp(const MyApp());
 }
 

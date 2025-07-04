@@ -94,9 +94,9 @@
     - [x] 1.4.3 Features principales: `lib/features/auth`, `lib/features/practice`, `lib/features/dashboard`, `lib/features/analysis`, `lib/features/export`
     - [x] 1.4.4 Componentes compartidos: `lib/shared/widgets`, `lib/shared/utils`
   - [ ] 1.5 Configurar Hive para persistencia de datos:
-    - [ ] 1.5.1 Crear adaptadores de Hive para los modelos `@HiveType`
-    - [ ] 1.5.2 Registrar adaptadores en `main.dart`
-    - [ ] 1.5.3 Inicializar Hive y abrir las cajas necesarias
+    - [x] 1.5.1 Crear adaptadores de Hive para los modelos `@HiveType`
+    - [x] 1.5.2 Registrar adaptadores en `main.dart`
+    - [x] 1.5.3 Inicializar Hive y abrir las cajas necesarias
   - [ ] 1.6 Implementar tema y enrutamiento:
     - [ ] 1.6.1 Crear `app_theme.dart` con la paleta naranja, azul, verde y gris
     - [ ] 1.6.2 Configurar `app_router.dart` con navegación basada en Navigator 2.0
