@@ -23,7 +23,6 @@ linter:
   rules:
     # Convenciones de nombres
     camel_case_types: true         # Clases y tipos en CamelCase
-    lower_case_with_underscores: true # Archivos y variables en snake_case
     constant_identifier_names: true   # Constantes en mayúsculas con guiones bajos
 
     # Buenas prácticas recomendadas
@@ -67,7 +66,6 @@ linter:
     unnecessary_raw_strings: true
     unnecessary_string_interpolations: true
     unnecessary_string_escapes: true
-    unnecessary_this: true
     use_full_hex_values_for_flutter_colors: true
     use_rethrow_when_possible: true
     use_setters_to_change_properties: true
