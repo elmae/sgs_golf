@@ -89,18 +89,18 @@
     - [x] 1.3.4 Exportación: `csv: ^5.1.1`, `file_picker: ^6.1.1`, `path_provider: ^2.1.1`
     - [x] 1.3.5 Desarrollo: `flutter_lints: ^3.0.1`, `mocktail: ^1.0.2` para pruebas
   - [ ] 1.4 Crear la estructura de carpetas siguiendo arquitectura modular:
-    - [ ] 1.4.1 Carpetas core: `lib/core/constants`, `lib/core/theme`, `lib/core/navigation`, `lib/core/errors`
-    - [ ] 1.4.2 Carpetas de datos: `lib/data/models`, `lib/data/repositories`, `lib/data/services`
-    - [ ] 1.4.3 Features principales: `lib/features/auth`, `lib/features/practice`, `lib/features/dashboard`, `lib/features/analysis`, `lib/features/export`
-    - [ ] 1.4.4 Componentes compartidos: `lib/shared/widgets`, `lib/shared/utils`
+    - [x] 1.4.1 Carpetas core: `lib/core/constants`, `lib/core/theme`, `lib/core/navigation`, `lib/core/errors`
+    - [x] 1.4.2 Carpetas de datos: `lib/data/models`, `lib/data/repositories`, `lib/data/services`
+    - [x] 1.4.3 Features principales: `lib/features/auth`, `lib/features/practice`, `lib/features/dashboard`, `lib/features/analysis`, `lib/features/export`
+    - [x] 1.4.4 Componentes compartidos: `lib/shared/widgets`, `lib/shared/utils`
   - [ ] 1.5 Configurar Hive para persistencia de datos:
-    - [ ] 1.5.1 Crear adaptadores de Hive para los modelos `@HiveType`
-    - [ ] 1.5.2 Registrar adaptadores en `main.dart`
-    - [ ] 1.5.3 Inicializar Hive y abrir las cajas necesarias
+    - [x] 1.5.1 Crear adaptadores de Hive para los modelos `@HiveType`
+    - [x] 1.5.2 Registrar adaptadores en `main.dart`
+    - [x] 1.5.3 Inicializar Hive y abrir las cajas necesarias
   - [ ] 1.6 Implementar tema y enrutamiento:
-    - [ ] 1.6.1 Crear `app_theme.dart` con la paleta naranja, azul, verde y gris
-    - [ ] 1.6.2 Configurar `app_router.dart` con navegación basada en Navigator 2.0
-    - [ ] 1.6.3 Implementar esquema de rutas nombradas para todas las pantallas
+    - [x] 1.6.1 Crear `app_theme.dart` con la paleta naranja, azul, verde y gris
+    - [x] 1.6.2 Configurar `app_router.dart` con navegación basada en Navigator 2.0
+    - [x] 1.6.3 Implementar esquema de rutas nombradas para todas las pantallas
   - [ ] 1.7 Configurar análisis estático y CI:
     - [ ] 1.7.1 Personalizar `analysis_options.yaml` para reglas de estilo específicas
   - [ ] 1.8 Configurar CI/CD con GitHub Actions
