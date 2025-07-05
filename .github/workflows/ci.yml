@@ -50,9 +50,8 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Check code formatting
-        run: flutter format --set-exit-if-changed .
-
+      - name: Run dart format
+        run: dart format --set-exit-if-changed .
       - name: Analyze project source
         run: flutter analyze
 
