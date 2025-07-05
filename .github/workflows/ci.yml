@@ -19,7 +19,12 @@ jobs:
         uses: actions/checkout@v4
       - name: Validar nombre de rama
         run: |
-          BRANCH_NAME="${GITHUB_REF##*/}"
+          if [ "${GITHUB_HEAD_REF}" != "" ]; then
+            BRANCH_NAME="${GITHUB_HEAD_REF}"
+          else
+            BRANCH_NAME="${GITHUB_REF##*/}"
+          fi
+
           if [[ ! "$BRANCH_NAME" =~ ^(feature/|fix/|hotfix/|main$|develop$) ]]; then
             echo "ERROR: El nombre de la rama '$BRANCH_NAME' no cumple con los prefijos permitidos (feature/, fix/, hotfix/, main, develop)."
             exit 1
