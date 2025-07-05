@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Paleta de colores SGS Golf
-/// 
+///
 /// - Zanahoria intensa: Botones primarios, acciones destacadas (#F54A00)
 /// - Verde campo: Fondos activos, barras de progreso (#388E3C)
 /// - Azul profundo: Encabezados, enlaces clave (#1976D2)
@@ -62,9 +62,7 @@ final ThemeData appTheme = ThemeData(
     titleLarge: TextStyle(color: AppColors.azulProfundo),
     bodyMedium: TextStyle(color: AppColors.grisOscuro),
   ),
-  iconTheme: const IconThemeData(
-    color: AppColors.grisOscuro,
-  ),
+  iconTheme: const IconThemeData(color: AppColors.grisOscuro),
   dividerColor: AppColors.grisSuave,
   progressIndicatorTheme: const ProgressIndicatorThemeData(
     color: AppColors.verdeCampo,
