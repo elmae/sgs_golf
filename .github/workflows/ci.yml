@@ -16,6 +16,7 @@ jobs:
 
     steps:
       - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Validar nombre de rama
         run: |
           if [ "${GITHUB_HEAD_REF}" != "" ]; then
@@ -28,7 +29,6 @@ jobs:
             echo "ERROR: El nombre de la rama '$BRANCH_NAME' no cumple con los prefijos permitidos (feature/, fix/, hotfix/, main, develop)."
             exit 1
           fi
-        uses: actions/checkout@v4
 
       - name: Validate Conventional Commit message
         uses: actions/setup-node@v4
