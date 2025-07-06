@@ -13,9 +13,5 @@ class GolfClub extends HiveObject {
   @HiveField(2)
   String type;
 
-  GolfClub({
-    required this.id,
-    required this.name,
-    required this.type,
-  });
+  GolfClub({required this.id, required this.name, required this.type});
 }

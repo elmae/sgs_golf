@@ -13,9 +13,5 @@ class User extends HiveObject {
   @HiveField(2)
   String email;
 
-  User({
-    required this.id,
-    required this.name,
-    required this.email,
-  });
+  User({required this.id, required this.name, required this.email});
 }

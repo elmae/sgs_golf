@@ -1,5 +1,6 @@
 /// app_router.dart
 library app_router;
+
 ///
 /// Esquema centralizado de rutas nombradas para la navegación principal de la app SGS Golf.
 ///
@@ -45,7 +46,9 @@ class AppRouterDelegate extends RouterDelegate<RouteSettings>
 
   RouteSettings _current;
 
-  AppRouterDelegate() : navigatorKey = GlobalKey<NavigatorState>(), _current = const RouteSettings(name: AppRoutes.login);
+  AppRouterDelegate()
+    : navigatorKey = GlobalKey<NavigatorState>(),
+      _current = const RouteSettings(name: AppRoutes.login);
 
   @override
   RouteSettings get currentConfiguration => _current;
@@ -68,15 +71,7 @@ class AppRouterDelegate extends RouterDelegate<RouteSettings>
         if (_current.name == AppRoutes.export)
           const MaterialPage(child: Placeholder(), name: AppRoutes.export),
       ],
-      onPopPage: (route, result) {
-        if (!route.didPop(result)) {
-          return false;
-        }
-        // Por simplicidad, siempre vuelve al login
-        _current = const RouteSettings(name: AppRoutes.login);
-        notifyListeners();
-        return true;
-      },
+      // onDidRemovePage removed: not a valid Navigator parameter in Flutter.
     );
   }
 
@@ -89,7 +84,9 @@ class AppRouterDelegate extends RouterDelegate<RouteSettings>
 
 class AppRouteInformationParser extends RouteInformationParser<RouteSettings> {
   @override
-  Future<RouteSettings> parseRouteInformation(RouteInformation routeInformation) async {
+  Future<RouteSettings> parseRouteInformation(
+    RouteInformation routeInformation,
+  ) async {
     final uri = routeInformation.uri;
     switch (uri.path) {
       case AppRoutes.login:
@@ -111,6 +108,8 @@ class AppRouteInformationParser extends RouteInformationParser<RouteSettings> {
 
   @override
   RouteInformation? restoreRouteInformation(RouteSettings configuration) {
-    return RouteInformation(uri: configuration.name != null ? Uri.parse(configuration.name!) : null);
+    return RouteInformation(
+      uri: configuration.name != null ? Uri.parse(configuration.name!) : null,
+    );
   }
 }
