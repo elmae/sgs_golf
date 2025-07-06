@@ -9,7 +9,7 @@ void main() {
     });
 
     test('formatDate should pad day and month with leading zeros', () {
-      final date = DateTime(2025, 1, 1);
+      final date = DateTime(2025);
       expect(DateUtilsShared.formatDate(date), '01/01/2025');
     });
   });
