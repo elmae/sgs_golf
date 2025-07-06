@@ -71,15 +71,7 @@ class AppRouterDelegate extends RouterDelegate<RouteSettings>
         if (_current.name == AppRoutes.export)
           const MaterialPage(child: Placeholder(), name: AppRoutes.export),
       ],
-      onPopPage: (route, result) {
-        if (!route.didPop(result)) {
-          return false;
-        }
-        // Por simplicidad, siempre vuelve al login
-        _current = const RouteSettings(name: AppRoutes.login);
-        notifyListeners();
-        return true;
-      },
+      // onDidRemovePage removed: not a valid Navigator parameter in Flutter.
     );
   }
 
