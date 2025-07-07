@@ -118,7 +118,7 @@
     - [x] 1.9.3 Documentar comandos útiles para agentes IA
 
 - [ ] 2.0 Implementación del Módulo de Autenticación y Gestión de Usuario
-  - [ ] 2.1 Modelado de datos del usuario:
+  - [x] 2.1 Modelado de datos del usuario:
     - [x] 2.1.1 Definir el modelo `User` con campos para ID, nombre, correo y contraseña
     - [x] 2.1.2 Crear adaptador Hive para `User`
     - [x] 2.1.3 Implementar validaciones de datos
