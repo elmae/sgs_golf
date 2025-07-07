@@ -20,16 +20,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Validar nombre de rama
-        shell: bash
-        run: |
-          BRANCH_NAME="${GITHUB_HEAD_REF:-${GITHUB_REF##*/}}"
-          echo "Validando rama: $BRANCH_NAME"
-          if ! echo "$BRANCH_NAME" | grep -Eq '^(feature/|fix/|hotfix/|main$|develop$)'; then
-            echo "ERROR: El nombre de la rama '$BRANCH_NAME' no cumple con los prefijos permitidos: feature/, fix/, hotfix/, main, develop."
-            exit 1
-          fi
-
       - name: Validate Conventional Commit message
         uses: wagoid/commitlint-github-action@v6
 
