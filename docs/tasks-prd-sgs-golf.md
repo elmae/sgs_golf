@@ -72,38 +72,38 @@
 
 ## Tasks
 
-- [ ] 1.0 Configuración Inicial del Proyecto y Estructura de Módulos
+- [x] 1.0 Configuración Inicial del Proyecto y Estructura de Módulos
   - [x] 1.1 Inicializar el proyecto Flutter en `devgolf/sgs_golf` con `flutter create --org com.sgs --project-name sgs_golf .`.
-  - [ ] 1.2 Inicializar Repositorio Git y configurar flujo de ramas
+  - [x] 1.2 Inicializar Repositorio Git y configurar flujo de ramas
     - [x] 1.2.1 Inicializar el repositorio con `git init` en la carpeta `devgolf/sgs_golf`.
     - [x] 1.2.2 Crear un archivo `.gitignore` con las exclusiones típicas para un proyecto Flutter.
-    - [ ] 1.2.3 ``
+    - [x] 1.2.3 ``
     - [x] 1.2.4 Añadir `.gitignore` al stage y realizar el primer commit con `git add .` y `git commit -m "feat: initial commit"`.
     - [x] 1.2.5 Agregar el repositorio remoto con `git remote add origin git@github.com:elmae/sgs_golf.git`.
     - [x] 1.2.6 Crear la rama `main`, y subirla al remoto con `git checkout -b main` y `git push -u origin main`.
     - [x] 1.2.7 Crear la rama `develop`, y subirla al remoto con `git checkout -b develop` y `git push -u origin develop`.
-  - [ ] 1.3 Configurar `pubspec.yaml` con las dependencias precisas:
+  - [x] 1.3 Configurar `pubspec.yaml` con las dependencias precisas:
     - [x] 1.3.1 Base de datos local: `hive: ^2.2.3`, `hive_flutter: ^1.1.0`, `path_provider: ^2.1.1`
     - [x] 1.3.2 Gestión de estado: `provider: ^6.1.1` (o `flutter_riverpod: ^2.4.9` si se prefiere)
     - [x] 1.3.3 Visualización: `fl_chart: ^0.65.0` para gráficos
     - [x] 1.3.4 Exportación: `csv: ^5.1.1`, `file_picker: ^6.1.1`, `path_provider: ^2.1.1`
     - [x] 1.3.5 Desarrollo: `flutter_lints: ^3.0.1`, `mocktail: ^1.0.2` para pruebas
-  - [ ] 1.4 Crear la estructura de carpetas siguiendo arquitectura modular:
+  - [x] 1.4 Crear la estructura de carpetas siguiendo arquitectura modular:
     - [x] 1.4.1 Carpetas core: `lib/core/constants`, `lib/core/theme`, `lib/core/navigation`, `lib/core/errors`
     - [x] 1.4.2 Carpetas de datos: `lib/data/models`, `lib/data/repositories`, `lib/data/services`
     - [x] 1.4.3 Features principales: `lib/features/auth`, `lib/features/practice`, `lib/features/dashboard`, `lib/features/analysis`, `lib/features/export`
     - [x] 1.4.4 Componentes compartidos: `lib/shared/widgets`, `lib/shared/utils`
-  - [ ] 1.5 Configurar Hive para persistencia de datos:
+  - [x] 1.5 Configurar Hive para persistencia de datos:
     - [x] 1.5.1 Crear adaptadores de Hive para los modelos `@HiveType`
     - [x] 1.5.2 Registrar adaptadores en `main.dart`
     - [x] 1.5.3 Inicializar Hive y abrir las cajas necesarias
-  - [ ] 1.6 Implementar tema y enrutamiento:
+  - [x] 1.6 Implementar tema y enrutamiento:
     - [x] 1.6.1 Crear `app_theme.dart` con la paleta naranja, azul, verde y gris
     - [x] 1.6.2 Configurar `app_router.dart` con navegación basada en Navigator 2.0
     - [x] 1.6.3 Implementar esquema de rutas nombradas para todas las pantallas
-  - [ ] 1.7 Configurar análisis estático y CI:
+  - [x] 1.7 Configurar análisis estático y CI:
     - [x] 1.7.1 Personalizar `analysis_options.yaml` para reglas de estilo específicas
-  - [ ] 1.8 Configurar CI/CD con GitHub Actions
+  - [x] 1.8 Configurar CI/CD con GitHub Actions
     - [x] 1.8.1 Crear directorio `.github/workflows` con archivo CI para pruebas automatizadas
     - [x] 1.8.2 Configurar reporte de cobertura con flutter test --coverage y Coveralls
     - [x] 1.8.3 Añadir paso de verificación de formato con flutter format .
@@ -112,16 +112,16 @@
     - [x] 1.8.6 Validar cobertura mínima
     - [x] 1.8.7 Enforce commits semánticos
     - [x] 1.8.8 Validar estructura de ramas (feature/, fix/, hotfix/)
-  - [ ] 1.9 Actualizar README.md
+  - [x] 1.9 Actualizar README.md
     - [x] 1.9.1 Documentar arquitectura del proyecto
     - [x] 1.9.2 Documentar flujo de datos entre providers y repositorios
     - [x] 1.9.3 Documentar comandos útiles para agentes IA
 
 - [ ] 2.0 Implementación del Módulo de Autenticación y Gestión de Usuario
-  - [ ] 2.1 Modelado de datos del usuario:
-    - [ ] 2.1.1 Definir el modelo `User` con campos para ID, nombre, correo y contraseña
-    - [ ] 2.1.2 Crear adaptador Hive para `User`
-    - [ ] 2.1.3 Implementar validaciones de datos
+  - [x] 2.1 Modelado de datos del usuario:
+    - [x] 2.1.1 Definir el modelo `User` con campos para ID, nombre, correo y contraseña
+    - [x] 2.1.2 Crear adaptador Hive para `User`
+    - [x] 2.1.3 Implementar validaciones de datos
   - [ ] 2.2 Implementación del servicio de autenticación:
     - [ ] 2.2.1 Crear `auth_service.dart` para encapsular funciones de hash y validación
     - [ ] 2.2.2 Implementar `AuthRepository` con métodos register(), login(), logout(), updateProfile()
