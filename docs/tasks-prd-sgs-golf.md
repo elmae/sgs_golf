@@ -122,10 +122,10 @@
     - [x] 2.1.1 Definir el modelo `User` con campos para ID, nombre, correo y contraseña
     - [x] 2.1.2 Crear adaptador Hive para `User`
     - [x] 2.1.3 Implementar validaciones de datos
-  - [ ] 2.2 Implementación del servicio de autenticación:
-    - [ ] 2.2.1 Crear `auth_service.dart` para encapsular funciones de hash y validación
-    - [ ] 2.2.2 Implementar `AuthRepository` con métodos register(), login(), logout(), updateProfile()
-    - [ ] 2.2.3 Añadir persistencia de sesión para mantener la sesión activa
+  - [x] 2.2 Implementación del servicio de autenticación:
+    - [x] 2.2.1 Crear `auth_service.dart` para encapsular funciones de hash y validación
+    - [x] 2.2.2 Implementar `AuthRepository` con métodos register(), login(), logout(), updateProfile()
+    - [x] 2.2.3 Añadir persistencia de sesión para mantener la sesión activa
   - [ ] 2.3 Desarrollo de interfaz de usuario:
     - [ ] 2.3.1 Diseñar e implementar `login_screen.dart` con campos y validación
     - [ ] 2.3.2 Crear `register_screen.dart` con formulario completo y validaciones
