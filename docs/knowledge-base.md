@@ -88,6 +88,8 @@ sgs_golf/
 - Separar lógica de negocio de la presentación (no lógica en widgets).
 - Pruebas y documentación replican la estructura de `lib/` en `test/` y `docs/`.
 
+- Los mensajes en los commit no pueden contener mayúsculas.
+- seguir reglas de conevtional commits.
 ---
 
 ## Criterios de Calidad
