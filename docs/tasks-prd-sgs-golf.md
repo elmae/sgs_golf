@@ -127,9 +127,9 @@
     - [x] 2.2.2 Implementar `AuthRepository` con métodos register(), login(), logout(), updateProfile()
     - [x] 2.2.3 Añadir persistencia de sesión para mantener la sesión activa
   - [ ] 2.3 Desarrollo de interfaz de usuario:
-    - [ ] 2.3.1 Diseñar e implementar `login_screen.dart` con campos y validación
-    - [ ] 2.3.2 Crear `register_screen.dart` con formulario completo y validaciones
-    - [ ] 2.3.3 Implementar transiciones y mensajes de error
+    - [x] 2.3.1 Diseñar e implementar `login_screen.dart` con campos y validación
+    - [x] 2.3.2 Crear `register_screen.dart` con formulario completo y validaciones
+    - [x] 2.3.3 Implementar transiciones y mensajes de error
   - [ ] 2.4 Gestión de estado para autenticación:
     - [ ] 2.4.1 Crear `auth_provider.dart` con estados de carga, error y autenticado
     - [ ] 2.4.2 Integrar Provider con widgets para reflejar cambios de estado
