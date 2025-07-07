@@ -72,7 +72,7 @@
 
 ## Tasks
 
-- [ ] 1.0 Configuración Inicial del Proyecto y Estructura de Módulos
+- [x] 1.0 Configuración Inicial del Proyecto y Estructura de Módulos
   - [x] 1.1 Inicializar el proyecto Flutter en `devgolf/sgs_golf` con `flutter create --org com.sgs --project-name sgs_golf .`.
   - [x] 1.2 Inicializar Repositorio Git y configurar flujo de ramas
     - [x] 1.2.1 Inicializar el repositorio con `git init` en la carpeta `devgolf/sgs_golf`.
