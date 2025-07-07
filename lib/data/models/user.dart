@@ -44,7 +44,9 @@ class User extends HiveObject {
       throw InvalidUserException('El correo electrónico no es válido.');
     }
     if (password.length < 6) {
-      throw InvalidUserException('La contraseña debe tener al menos 6 caracteres.');
+      throw InvalidUserException(
+        'La contraseña debe tener al menos 6 caracteres.',
+      );
     }
   }
 }
