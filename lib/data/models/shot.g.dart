@@ -17,24 +17,21 @@ class ShotAdapter extends TypeAdapter<Shot> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Shot(
-      id: fields[0] as String,
-      clubId: fields[1] as String,
-      distance: fields[2] as double,
-      timestamp: fields[3] as DateTime,
+      clubType: fields[0] as GolfClubType,
+      distance: fields[1] as double,
+      timestamp: fields[2] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, Shot obj) {
     writer
-      ..writeByte(4)
-      ..writeByte(0)
-      ..write(obj.id)
-      ..writeByte(1)
-      ..write(obj.clubId)
-      ..writeByte(2)
-      ..write(obj.distance)
       ..writeByte(3)
+      ..writeByte(0)
+      ..write(obj.clubType)
+      ..writeByte(1)
+      ..write(obj.distance)
+      ..writeByte(2)
       ..write(obj.timestamp);
   }
 

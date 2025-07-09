@@ -11,8 +11,10 @@ Future<void> main() async {
 
   Hive.registerAdapter(UserAdapter());
   Hive.registerAdapter(GolfClubAdapter());
+  Hive.registerAdapter(GolfClubTypeAdapter());
   Hive.registerAdapter(ShotAdapter());
   Hive.registerAdapter(PracticeSessionAdapter());
+  Hive.registerAdapter(DurationAdapter());
 
   await Hive.openBox<User>('users');
   await Hive.openBox<GolfClub>('golfClubs');

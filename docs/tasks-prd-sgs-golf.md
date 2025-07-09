@@ -134,17 +134,17 @@
     - [x] 2.4.1 Crear `auth_provider.dart` con estados de carga, error y autenticado
     - [x] 2.4.2 Integrar Provider con widgets para reflejar cambios de estado
     - [x] 2.4.3 Implementar manejo de errores y mensajes al usuario
-  - [ ] 2.5 Pruebas:
-    - [ ] 2.5.1 Escribir pruebas unitarias para `AuthRepository`
-    - [ ] 2.5.2 Escribir pruebas de widget para `login_screen.dart` y `register_screen.dart`
-    - [ ] 2.5.3 Probar flujos de error y validación
+  - [x] 2.5 Pruebas:
+    - [x] 2.5.1 Escribir pruebas unitarias para `AuthRepository`
+    - [x] 2.5.2 Escribir pruebas de widget para `login_screen.dart` y `register_screen.dart`
+    - [x] 2.5.3 Probar flujos de error y validación
 
 - [ ] 3.0 Desarrollo del Módulo de Sesiones de Práctica (Core de la Aplicación)
-  - [ ] 3.1 Modelado de datos clave:
-    - [ ] 3.1.1 Definir enum `GolfClubType` para palos (PW, GW, SW, LW)
-    - [ ] 3.1.2 Crear modelo `Shot` con campos para tipo de palo, distancia y timestamp
-    - [ ] 3.1.3 Implementar `PracticeSession` con fecha, duración, lista de tiros y resumen
-    - [ ] 3.1.4 Diseñar adaptadores Hive para todos los modelos
+  - [x] 3.1 Modelado de datos clave:
+    - [x] 3.1.1 Definir enum `GolfClubType` para palos (PW, GW, SW, LW)
+    - [x] 3.1.2 Crear modelo `Shot` con campos para tipo de palo, distancia y timestamp
+    - [x] 3.1.3 Implementar `PracticeSession` con fecha, duración, lista de tiros y resumen
+    - [x] 3.1.4 Diseñar adaptadores Hive para todos los modelos
   - [ ] 3.2 Lógica de negocio para sesiones:
     - [ ] 3.2.1 Crear `PracticeRepository` para la gestión CRUD de sesiones
     - [ ] 3.2.2 Implementar métodos para añadir tiros a una sesión activa

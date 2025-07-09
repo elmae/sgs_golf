@@ -17,10 +17,10 @@ class PracticeSessionAdapter extends TypeAdapter<PracticeSession> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return PracticeSession(
-      id: fields[0] as String,
-      userId: fields[1] as String,
-      date: fields[2] as DateTime,
-      shotIds: (fields[3] as List).cast<String>(),
+      date: fields[0] as DateTime,
+      duration: fields[1] as Duration,
+      shots: (fields[2] as List).cast<Shot>(),
+      summary: fields[3] as String,
     );
   }
 
@@ -29,13 +29,13 @@ class PracticeSessionAdapter extends TypeAdapter<PracticeSession> {
     writer
       ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.id)
-      ..writeByte(1)
-      ..write(obj.userId)
-      ..writeByte(2)
       ..write(obj.date)
+      ..writeByte(1)
+      ..write(obj.duration)
+      ..writeByte(2)
+      ..write(obj.shots)
       ..writeByte(3)
-      ..write(obj.shotIds);
+      ..write(obj.summary);
   }
 
   @override

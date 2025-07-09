@@ -1,25 +1,30 @@
 import 'package:hive/hive.dart';
+import 'package:sgs_golf/data/models/golf_club.dart';
 
 part 'shot.g.dart';
 
+/// Modelo que representa un tiro individual en una sesión de práctica.
 @HiveType(typeId: 2)
 class Shot extends HiveObject {
+  /// Tipo de palo utilizado para el tiro
   @HiveField(0)
-  String id;
+  GolfClubType clubType;
 
+  /// Distancia alcanzada en metros
   @HiveField(1)
-  String clubId;
-
-  @HiveField(2)
   double distance;
 
-  @HiveField(3)
+  /// Marca de tiempo del tiro
+  @HiveField(2)
   DateTime timestamp;
 
   Shot({
-    required this.id,
-    required this.clubId,
+    required this.clubType,
     required this.distance,
     required this.timestamp,
   });
+
+  @override
+  String toString() =>
+      'Shot(clubType: $clubType, distance: $distance, timestamp: $timestamp)';
 }
