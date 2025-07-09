@@ -45,3 +45,52 @@ class GolfClubAdapter extends TypeAdapter<GolfClub> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+class GolfClubTypeAdapter extends TypeAdapter<GolfClubType> {
+  @override
+  final int typeId = 10;
+
+  @override
+  GolfClubType read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 0:
+        return GolfClubType.pw;
+      case 1:
+        return GolfClubType.gw;
+      case 2:
+        return GolfClubType.sw;
+      case 3:
+        return GolfClubType.lw;
+      default:
+        return GolfClubType.pw;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, GolfClubType obj) {
+    switch (obj) {
+      case GolfClubType.pw:
+        writer.writeByte(0);
+        break;
+      case GolfClubType.gw:
+        writer.writeByte(1);
+        break;
+      case GolfClubType.sw:
+        writer.writeByte(2);
+        break;
+      case GolfClubType.lw:
+        writer.writeByte(3);
+        break;
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GolfClubTypeAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
