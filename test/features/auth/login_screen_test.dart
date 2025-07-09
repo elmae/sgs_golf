@@ -13,7 +13,9 @@ class MockAuthProvider extends Mock implements AuthProvider {}
 
 void main() {
   group('LoginScreen', () {
-    testWidgets('renderiza campos de correo y contraseña y botón de login', (tester) async {
+    testWidgets('renderiza campos de correo y contraseña y botón de login', (
+      tester,
+    ) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
       when(() => mockProvider.autenticado).thenReturn(false);
@@ -27,10 +29,15 @@ void main() {
       expect(find.text('Correo electrónico'), findsOneWidget);
       expect(find.text('Contraseña'), findsOneWidget);
       expect(find.byType(CustomButton), findsOneWidget);
-      expect(find.textContaining('Iniciar sesión', findRichText: true), findsOneWidget);
+      expect(
+        find.textContaining('Iniciar sesión', findRichText: true),
+        findsOneWidget,
+      );
     });
 
-    testWidgets('permite escribir en los campos de correo y contraseña', (WidgetTester tester) async {
+    testWidgets('permite escribir en los campos de correo y contraseña', (
+      WidgetTester tester,
+    ) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
       when(() => mockProvider.autenticado).thenReturn(false);
@@ -40,13 +47,18 @@ void main() {
           child: const MaterialApp(home: LoginScreen()),
         ),
       );
-      await tester.enterText(find.byType(TextFormField).at(0), 'test@example.com');
+      await tester.enterText(
+        find.byType(TextFormField).at(0),
+        'test@example.com',
+      );
       await tester.enterText(find.byType(TextFormField).at(1), 'Password123');
       expect(find.text('test@example.com'), findsOneWidget);
       expect(find.text('Password123'), findsOneWidget);
     });
 
-    testWidgets('muestra mensaje de error si los campos están vacíos', (WidgetTester tester) async {
+    testWidgets('muestra mensaje de error si los campos están vacíos', (
+      WidgetTester tester,
+    ) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
       when(() => mockProvider.autenticado).thenReturn(false);
@@ -58,41 +70,63 @@ void main() {
       );
       await tester.tap(find.byType(CustomButton));
       await tester.pump();
-      expect(find.textContaining('obligatorio', findRichText: true), findsWidgets);
-    });
-
-    testWidgets('muestra mensaje de error si el correo tiene formato inválido', (WidgetTester tester) async {
-      final mockProvider = MockAuthProvider();
-      when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
-      when(() => mockProvider.autenticado).thenReturn(false);
-      await tester.pumpWidget(
-        ChangeNotifierProvider<AuthProvider>.value(
-          value: mockProvider,
-          child: const MaterialApp(home: LoginScreen()),
-        ),
+      expect(
+        find.textContaining('obligatorio', findRichText: true),
+        findsWidgets,
       );
-      await tester.enterText(find.byType(TextFormField).at(0), 'correo-invalido');
-      await tester.enterText(find.byType(TextFormField).at(1), 'Password123');
-      await tester.tap(find.byType(CustomButton));
-      await tester.pump();
-      expect(find.textContaining('Formato de correo inválido', findRichText: true), findsOneWidget);
     });
 
-    testWidgets('muestra mensaje de error del provider (ej: Usuario no encontrado)', (WidgetTester tester) async {
-      final mockProvider = MockAuthProvider();
-      when(() => mockProvider.status).thenReturn(AuthStatus.error);
-      when(() => mockProvider.autenticado).thenReturn(false);
-      when(() => mockProvider.errorMessage).thenReturn('Usuario no encontrado');
-      await tester.pumpWidget(
-        ChangeNotifierProvider<AuthProvider>.value(
-          value: mockProvider,
-          child: const MaterialApp(home: LoginScreen()),
-        ),
-      );
-      expect(find.textContaining('Usuario no encontrado', findRichText: true), findsOneWidget);
-    });
+    testWidgets(
+      'muestra mensaje de error si el correo tiene formato inválido',
+      (WidgetTester tester) async {
+        final mockProvider = MockAuthProvider();
+        when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
+        when(() => mockProvider.autenticado).thenReturn(false);
+        await tester.pumpWidget(
+          ChangeNotifierProvider<AuthProvider>.value(
+            value: mockProvider,
+            child: const MaterialApp(home: LoginScreen()),
+          ),
+        );
+        await tester.enterText(
+          find.byType(TextFormField).at(0),
+          'correo-invalido',
+        );
+        await tester.enterText(find.byType(TextFormField).at(1), 'Password123');
+        await tester.tap(find.byType(CustomButton));
+        await tester.pump();
+        expect(
+          find.textContaining('Formato de correo inválido', findRichText: true),
+          findsOneWidget,
+        );
+      },
+    );
 
-    testWidgets('llama a login en AuthProvider al presionar el botón', (WidgetTester tester) async {
+    testWidgets(
+      'muestra mensaje de error del provider (ej: Usuario no encontrado)',
+      (WidgetTester tester) async {
+        final mockProvider = MockAuthProvider();
+        when(() => mockProvider.status).thenReturn(AuthStatus.error);
+        when(() => mockProvider.autenticado).thenReturn(false);
+        when(
+          () => mockProvider.errorMessage,
+        ).thenReturn('Usuario no encontrado');
+        await tester.pumpWidget(
+          ChangeNotifierProvider<AuthProvider>.value(
+            value: mockProvider,
+            child: const MaterialApp(home: LoginScreen()),
+          ),
+        );
+        expect(
+          find.textContaining('Usuario no encontrado', findRichText: true),
+          findsOneWidget,
+        );
+      },
+    );
+
+    testWidgets('llama a login en AuthProvider al presionar el botón', (
+      WidgetTester tester,
+    ) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.login(any(), any())).thenAnswer((_) async {});
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
@@ -103,14 +137,21 @@ void main() {
           child: const MaterialApp(home: LoginScreen()),
         ),
       );
-      await tester.enterText(find.byType(TextFormField).at(0), 'test@example.com');
+      await tester.enterText(
+        find.byType(TextFormField).at(0),
+        'test@example.com',
+      );
       await tester.enterText(find.byType(TextFormField).at(1), 'Password123');
       await tester.tap(find.byType(CustomButton));
       await tester.pump();
-      verify(() => mockProvider.login('test@example.com', 'Password123')).called(1);
+      verify(
+        () => mockProvider.login('test@example.com', 'Password123'),
+      ).called(1);
     });
 
-    testWidgets('navega a la pantalla de registro al presionar el enlace', (WidgetTester tester) async {
+    testWidgets('navega a la pantalla de registro al presionar el enlace', (
+      WidgetTester tester,
+    ) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
       when(() => mockProvider.autenticado).thenReturn(false);

@@ -25,7 +25,7 @@ class AuthProvider extends ChangeNotifier {
 
   /// Constructor, permite inyectar un AuthRepository (útil para tests).
   AuthProvider({AuthRepository? authRepository})
-      : _authRepository = authRepository ?? AuthRepository() {
+    : _authRepository = authRepository ?? AuthRepository() {
     _verificarSesion();
   }
 
@@ -43,7 +43,8 @@ class AuthProvider extends ChangeNotifier {
   bool get cargando => _estado == AuthStatus.loading;
 
   /// Indica si hay un usuario autenticado.
-  bool get autenticado => _estado == AuthStatus.authenticated && _usuario != null;
+  bool get autenticado =>
+      _estado == AuthStatus.authenticated && _usuario != null;
 
   /// Intenta iniciar sesión con email y contraseña.
   Future<void> login(String email, String password) async {

@@ -3,7 +3,7 @@
 // - Ahora los errores se muestran en un Card con icono y texto amigable, cumpliendo la tarea 2.4.3 del PRD.
 // - No se modificó la lógica del provider, solo la UI.
 // - Documentación inline de los cambios.
- // Pantalla de Login SGS Golf
+// Pantalla de Login SGS Golf
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sgs_golf/core/navigation/app_router.dart';
@@ -89,24 +89,31 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Text(
                       'Iniciar sesión',
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        color: AppColors.azulProfundo,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.headlineMedium
+                          ?.copyWith(
+                            color: AppColors.azulProfundo,
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                     const SizedBox(height: 32),
                     // Indicador de carga y mensajes de error/autenticado integrados con AuthProvider.
                     if (authProvider.status == AuthStatus.loading)
                       const CircularProgressIndicator(),
-                    if (authProvider.status == AuthStatus.error && authProvider.errorMessage != null)
+                    if (authProvider.status == AuthStatus.error &&
+                        authProvider.errorMessage != null)
                       Padding(
                         padding: const EdgeInsets.only(bottom: 16),
                         child: Card(
                           color: Colors.red[50],
                           elevation: 0,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                           child: ListTile(
-                            leading: const Icon(Icons.error_outline, color: Colors.red),
+                            leading: const Icon(
+                              Icons.error_outline,
+                              color: Colors.red,
+                            ),
                             title: const Text(
                               'Ocurrió un problema:',
                               style: TextStyle(
@@ -126,7 +133,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: const EdgeInsets.only(bottom: 16),
                         child: Text(
                           '¡Autenticado!',
-                          style: TextStyle(color: Colors.green[700], fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            color: Colors.green[700],
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     TextFormField(
@@ -140,7 +150,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: AppColors.grisOscuro),
+                          borderSide: const BorderSide(
+                            color: AppColors.grisOscuro,
+                          ),
                         ),
                       ),
                       style: const TextStyle(color: AppColors.grisOscuro),
@@ -157,7 +169,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: AppColors.grisOscuro),
+                          borderSide: const BorderSide(
+                            color: AppColors.grisOscuro,
+                          ),
                         ),
                       ),
                       style: const TextStyle(color: AppColors.grisOscuro),

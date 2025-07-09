@@ -3,7 +3,7 @@
 // - Ahora los errores se muestran en un Card con icono y texto amigable, cumpliendo la tarea 2.4.3 del PRD.
 // - No se modificó la lógica del provider, solo la UI.
 // - Documentación inline de los cambios.
- // Pantalla de Registro SGS Golf
+// Pantalla de Registro SGS Golf
 // ignore_for_file: directives_ordering
 
 import 'package:flutter/material.dart';
@@ -113,7 +113,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Column(
                   children: [
                     // Mensaje de error del provider (tarea 2.4.3 PRD)
-                    if (authProvider.status == AuthStatus.error && authProvider.errorMessage != null)
+                    if (authProvider.status == AuthStatus.error &&
+                        authProvider.errorMessage != null)
                       Padding(
                         padding: const EdgeInsets.only(bottom: 16),
                         child: Column(
@@ -121,9 +122,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Card(
                               color: Colors.red[50],
                               elevation: 0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                               child: ListTile(
-                                leading: const Icon(Icons.error_outline, color: Colors.red),
+                                leading: const Icon(
+                                  Icons.error_outline,
+                                  color: Colors.red,
+                                ),
                                 title: const Text(
                                   'Ocurrió un problema:',
                                   style: TextStyle(
@@ -196,7 +202,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         padding: const EdgeInsets.only(bottom: 16),
                         child: Text(
                           '¡Registro exitoso!',
-                          style: TextStyle(color: Colors.green[700], fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            color: Colors.green[700],
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     CustomButton(
@@ -227,6 +236,4 @@ class _RegisterScreenState extends State<RegisterScreen> {
       },
     );
   }
-
-  
-  }
+}
