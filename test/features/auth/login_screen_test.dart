@@ -13,9 +13,7 @@ class MockAuthProvider extends Mock implements AuthProvider {}
 
 void main() {
   group('LoginScreen', () {
-    testWidgets('renderiza campos de correo y contraseña y botón de login', (
-      tester,
-    ) async {
+    testWidgets('renderiza campos de correo y contraseña y botón de login', (tester) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
       when(() => mockProvider.autenticado).thenReturn(false);
@@ -35,9 +33,7 @@ void main() {
       );
     });
 
-    testWidgets('permite escribir en los campos de correo y contraseña', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('permite escribir en los campos de correo y contraseña', (tester) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
       when(() => mockProvider.autenticado).thenReturn(false);
@@ -56,9 +52,7 @@ void main() {
       expect(find.text('Password123'), findsOneWidget);
     });
 
-    testWidgets('muestra mensaje de error si los campos están vacíos', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('muestra mensaje de error si los campos están vacíos', (tester) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
       when(() => mockProvider.autenticado).thenReturn(false);
@@ -76,9 +70,7 @@ void main() {
       );
     });
 
-    testWidgets(
-      'muestra mensaje de error si el correo tiene formato inválido',
-      (WidgetTester tester) async {
+    testWidgets('muestra mensaje de error si el correo tiene formato inválido', (tester) async {
         final mockProvider = MockAuthProvider();
         when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
         when(() => mockProvider.autenticado).thenReturn(false);
@@ -102,9 +94,7 @@ void main() {
       },
     );
 
-    testWidgets(
-      'muestra mensaje de error del provider (ej: Usuario no encontrado)',
-      (WidgetTester tester) async {
+    testWidgets('muestra mensaje de error del provider (ej: Usuario no encontrado)', (tester) async {
         final mockProvider = MockAuthProvider();
         when(() => mockProvider.status).thenReturn(AuthStatus.error);
         when(() => mockProvider.autenticado).thenReturn(false);
@@ -124,9 +114,7 @@ void main() {
       },
     );
 
-    testWidgets('llama a login en AuthProvider al presionar el botón', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('llama a login en AuthProvider al presionar el botón', (tester) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.login(any(), any())).thenAnswer((_) async {});
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
@@ -149,9 +137,7 @@ void main() {
       ).called(1);
     });
 
-    testWidgets('navega a la pantalla de registro al presionar el enlace', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('navega a la pantalla de registro al presionar el enlace', (tester) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
       when(() => mockProvider.autenticado).thenReturn(false);

@@ -13,9 +13,7 @@ class MockAuthProvider extends Mock implements AuthProvider {}
 
 void main() {
   group('RegisterScreen', () {
-    testWidgets(
-      'renderiza campos de nombre, correo, contraseña y botón de registro',
-      (WidgetTester tester) async {
+    testWidgets('renderiza campos de nombre, correo, contraseña y botón de registro', (tester) async {
         final mockProvider = MockAuthProvider();
         when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
         when(() => mockProvider.autenticado).thenReturn(false);
@@ -38,9 +36,7 @@ void main() {
       },
     );
 
-    testWidgets('permite escribir en los campos del formulario', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('permite escribir en los campos del formulario', (tester) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
       when(() => mockProvider.autenticado).thenReturn(false);
@@ -62,9 +58,7 @@ void main() {
       expect(find.text('Password123'), findsNWidgets(2));
     });
 
-    testWidgets('muestra mensaje de error si los campos están vacíos', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('muestra mensaje de error si los campos están vacíos', (tester) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
       when(() => mockProvider.autenticado).thenReturn(false);
@@ -82,9 +76,7 @@ void main() {
       );
     });
 
-    testWidgets(
-      'muestra mensaje de error si el correo tiene formato inválido',
-      (WidgetTester tester) async {
+    testWidgets('muestra mensaje de error si el correo tiene formato inválido', (tester) async {
         final mockProvider = MockAuthProvider();
         when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
         when(() => mockProvider.autenticado).thenReturn(false);
@@ -110,9 +102,7 @@ void main() {
       },
     );
 
-    testWidgets('muestra mensaje de error si las contraseñas no coinciden', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('muestra mensaje de error si las contraseñas no coinciden', (tester) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
       when(() => mockProvider.autenticado).thenReturn(false);
@@ -137,9 +127,7 @@ void main() {
       );
     });
 
-    testWidgets(
-      'muestra mensaje de error del provider (ej: Correo ya registrado)',
-      (WidgetTester tester) async {
+    testWidgets('muestra mensaje de error del provider (ej: Correo ya registrado)', (tester) async {
         final mockProvider = MockAuthProvider();
         when(() => mockProvider.status).thenReturn(AuthStatus.error);
         when(() => mockProvider.autenticado).thenReturn(false);
@@ -159,9 +147,7 @@ void main() {
       },
     );
 
-    testWidgets('llama a register en AuthProvider al presionar el botón', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('llama a register en AuthProvider al presionar el botón', (tester) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
       when(() => mockProvider.autenticado).thenReturn(false);
@@ -192,9 +178,7 @@ void main() {
       ).called(1);
     });
 
-    testWidgets('navega a la pantalla de login al presionar el enlace', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('navega a la pantalla de login al presionar el enlace', (tester) async {
       final mockProvider = MockAuthProvider();
       when(() => mockProvider.status).thenReturn(AuthStatus.unauthenticated);
       when(() => mockProvider.autenticado).thenReturn(false);
@@ -202,7 +186,7 @@ void main() {
         ChangeNotifierProvider<AuthProvider>.value(
           value: mockProvider,
           child: MaterialApp(
-            home: RegisterScreen(),
+            home: const RegisterScreen(),
             routes: {'/login': (context) => const LoginScreen()},
           ),
         ),
