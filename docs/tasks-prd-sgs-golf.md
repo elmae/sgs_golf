@@ -117,7 +117,7 @@
     - [x] 1.9.2 Documentar flujo de datos entre providers y repositorios
     - [x] 1.9.3 Documentar comandos útiles para agentes IA
 
-- [ ] 2.0 Implementación del Módulo de Autenticación y Gestión de Usuario
+- [x] 2.0 Implementación del Módulo de Autenticación y Gestión de Usuario
   - [x] 2.1 Modelado de datos del usuario:
     - [x] 2.1.1 Definir el modelo `User` con campos para ID, nombre, correo y contraseña
     - [x] 2.1.2 Crear adaptador Hive para `User`
@@ -126,11 +126,11 @@
     - [x] 2.2.1 Crear `auth_service.dart` para encapsular funciones de hash y validación
     - [x] 2.2.2 Implementar `AuthRepository` con métodos register(), login(), logout(), updateProfile()
     - [x] 2.2.3 Añadir persistencia de sesión para mantener la sesión activa
-  - [ ] 2.3 Desarrollo de interfaz de usuario:
+  - [x] 2.3 Desarrollo de interfaz de usuario:
     - [x] 2.3.1 Diseñar e implementar `login_screen.dart` con campos y validación
     - [x] 2.3.2 Crear `register_screen.dart` con formulario completo y validaciones
     - [x] 2.3.3 Implementar transiciones y mensajes de error
-  - [ ] 2.4 Gestión de estado para autenticación:
+  - [x] 2.4 Gestión de estado para autenticación:
     - [x] 2.4.1 Crear `auth_provider.dart` con estados de carga, error y autenticado
     - [x] 2.4.2 Integrar Provider con widgets para reflejar cambios de estado
     - [x] 2.4.3 Implementar manejo de errores y mensajes al usuario
@@ -139,7 +139,7 @@
     - [x] 2.5.2 Escribir pruebas de widget para `login_screen.dart` y `register_screen.dart`
     - [x] 2.5.3 Probar flujos de error y validación
 
-- [ ] 3.0 Desarrollo del Módulo de Sesiones de Práctica (Core de la Aplicación)
+- [x] 3.0 Desarrollo del Módulo de Sesiones de Práctica (Core de la Aplicación)
   - [x] 3.1 Modelado de datos clave:
     - [x] 3.1.1 Definir enum `GolfClubType` para palos (PW, GW, SW, LW)
     - [x] 3.1.2 Crear modelo `Shot` con campos para tipo de palo, distancia y timestamp
