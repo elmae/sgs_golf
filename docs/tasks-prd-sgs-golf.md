@@ -131,9 +131,9 @@
     - [x] 2.3.2 Crear `register_screen.dart` con formulario completo y validaciones
     - [x] 2.3.3 Implementar transiciones y mensajes de error
   - [ ] 2.4 Gestión de estado para autenticación:
-    - [ ] 2.4.1 Crear `auth_provider.dart` con estados de carga, error y autenticado
-    - [ ] 2.4.2 Integrar Provider con widgets para reflejar cambios de estado
-    - [ ] 2.4.3 Implementar manejo de errores y mensajes al usuario
+    - [x] 2.4.1 Crear `auth_provider.dart` con estados de carga, error y autenticado
+    - [x] 2.4.2 Integrar Provider con widgets para reflejar cambios de estado
+    - [x] 2.4.3 Implementar manejo de errores y mensajes al usuario
   - [ ] 2.5 Pruebas:
     - [ ] 2.5.1 Escribir pruebas unitarias para `AuthRepository`
     - [ ] 2.5.2 Escribir pruebas de widget para `login_screen.dart` y `register_screen.dart`
