@@ -145,11 +145,11 @@
     - [x] 3.1.2 Crear modelo `Shot` con campos para tipo de palo, distancia y timestamp
     - [x] 3.1.3 Implementar `PracticeSession` con fecha, duración, lista de tiros y resumen
     - [x] 3.1.4 Diseñar adaptadores Hive para todos los modelos
-  - [ ] 3.2 Lógica de negocio para sesiones:
-    - [ ] 3.2.1 Crear `PracticeRepository` para la gestión CRUD de sesiones
-    - [ ] 3.2.2 Implementar métodos para añadir tiros a una sesión activa
-    - [ ] 3.2.3 Añadir cálculos de estadísticas por sesión y palo
-    - [ ] 3.2.4 Crear métodos para obtener conteos y promedios por palo
+  - [x] 3.2 Lógica de negocio para sesiones:
+    - [x] 3.2.1 Crear `PracticeRepository` para la gestión CRUD de sesiones
+    - [x] 3.2.2 Implementar métodos para añadir tiros a una sesión activa
+    - [x] 3.2.3 Añadir cálculos de estadísticas por sesión y palo
+    - [x] 3.2.4 Crear métodos para obtener conteos y promedios por palo
   - [ ] 3.3 Interfaz de práctica:
     - [ ] 3.3.1 Diseñar `club_selector_widget.dart` visual e interactivo
     - [ ] 3.3.2 Implementar `distance_input_widget.dart` con validación numérica
