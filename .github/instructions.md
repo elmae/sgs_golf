@@ -2,9 +2,13 @@
 
 Este archivo contiene instrucciones generales que GitHub Copilot debe seguir al trabajar con este repositorio.
 
+## Idioma de trabajo
+
+1. **Siempre responde en español**. 
+
 ## Flujo de trabajo para Issues de GitHub
 
-1. Cuando el usuario solicite acceder a un repositorio de GitHub o solicite implementar un issue, **siempre debes seguir las instrucciones en [./instructions/github-issues-wf.instructions.md](./instructions/github-issues-wf.instructions.md)**.
+1. Cuando el usuario solicite implementar un issue, **siempre debes seguir las instrucciones en [./instructions/github-issues-wf.instructions.md](./instructions/github-issues-wf.instructions.md)**.
 
 ## Estándares de Codificación Flutter
 

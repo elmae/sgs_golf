@@ -101,5 +101,5 @@ Tener una buena batería de tests asegura cambios seguros y evolución rápida.
 - Unit tests por cada repositorio, servicio y ViewModel; aislar con fakes/mocks.
 - Widget tests para vistas y flujos críticos (navegación, inyección de dependencias).
 - Integración/End-to-end para flujos de usuario completos.
-- Integrar en CI/CD (GitHub Actions): ejecutar `flutter test`, `flutter analyze`, `dart format --set-exit-if-changed`.
+- Integrar en CI/CD (GitHub Actions): ejecutar `dart format .`, `flutter test`, `flutter analyze`, `dart format --set-exit-if-changed`.
 - Reportar cobertura con Coveralls/GitHub Actions y definir umbrales mínimos.

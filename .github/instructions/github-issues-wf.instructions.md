@@ -1,13 +1,13 @@
-## 🧭 Instrucciones para trabajar con GitHub Issues en el repositorio`elmae/sgs_golf`
+# 🧭 Instrucciones para trabajar con la resolucion de issues en GitHub
 
-Sigue este flujo para abordar cualquier issue en este proyecto:
+Sigue este flujo para abordar cualquier issue en este proyecto en el repositorio`elmae/sgs_golf`:
 
 ---
 
 ### 1. 🧠 Obtén y comprende el contexto
 
-- Lee en elmae/sgs_golf el issue en detalle .
-- Consulta los documentos clave disponibles en `docs/`:
+- Lee en elmae/sgs_golf el issue solicitado, en detalle. Usa el MCP server `github-mcp` .
+- en caso de ser necesario, Consulta los documentos clave disponibles en `docs/`:
   - [`tasks-prd-sgs-golf.md`](docs/tasks-prd-sgs-golf.md)
   - [`knowledge-base.md`](docs/knowledge-base.md) 
 - Si el issue es ambiguo, solicita aclaraciones antes de continuar.
