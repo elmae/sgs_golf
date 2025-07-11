@@ -1,12 +1,9 @@
-
 import 'package:flutter/material.dart';
+import 'package:sgs_golf/data/models/golf_club.dart';
 import 'package:sgs_golf/data/models/practice_session.dart';
 import 'package:sgs_golf/data/models/practice_session_ext.dart';
 import 'package:sgs_golf/data/models/shot.dart';
 import 'package:sgs_golf/data/repositories/practice_repository.dart';
-
-
-import 'package:sgs_golf/data/models/golf_club.dart';
 
 class PracticeProvider extends ChangeNotifier {
   /// Club seleccionado para el siguiente disparo en la sesión activa.
@@ -18,6 +15,7 @@ class PracticeProvider extends ChangeNotifier {
     _nextClubType = clubType;
     notifyListeners();
   }
+
   final PracticeRepository repository;
   PracticeSession? _activeSession;
   int? _activeSessionKey;

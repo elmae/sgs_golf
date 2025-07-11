@@ -139,12 +139,9 @@ class _DistanceInputWidgetState extends State<DistanceInputWidget> {
             helperText:
                 'Ingrese un valor entre ${widget.minRange.toInt()}-${widget.maxRange.toInt()} metros',
             filled: _isFocused,
-            fillColor: _isFocused ? Color.fromRGBO(
-              (theme.primaryColor.r * 255.0).round(),
-              (theme.primaryColor.g * 255.0).round(),
-              (theme.primaryColor.b * 255.0).round(),
-              0.1,
-            ) : null,
+            fillColor: _isFocused
+                ? theme.primaryColor.withOpacity(0.1)
+                : null,
           ),
           onChanged: _onChanged,
           onSubmitted: (val) {
