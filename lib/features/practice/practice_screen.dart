@@ -17,6 +17,55 @@ class PracticeScreen extends StatefulWidget {
 class _PracticeScreenState extends State<PracticeScreen> {
   GolfClubType _selectedClub = GolfClubType.pw;
   double? _distance;
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _distanceController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    // Inicializa una sesión si no hay una activa
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final provider = Provider.of<PracticeProvider>(context, listen: false);
+      if (provider.activeSession == null) {
+        provider.startSession(DateTime.now());
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _distanceController.dispose();
+    super.dispose();
+  }
+
+  void _addShot(PracticeProvider provider) {
+    if (_distance != null && _distance! > 0) {
+      provider.addShot(
+        Shot(
+          clubType: _selectedClub,
+          distance: _distance!,
+          timestamp: DateTime.now(),
+        ),
+      );
+
+      // Reset del campo de distancia y muestra feedback
+      setState(() {
+        _distanceController.clear();
+        _distance = null;
+      });
+
+      // Muestra un feedback visual
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Tiro añadido: ${_selectedClub.name.toUpperCase()} a $_distance metros',
+          ),
+          duration: const Duration(seconds: 1),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,47 +75,184 @@ class _PracticeScreenState extends State<PracticeScreen> {
       for (var club in GolfClubType.values) club: provider.countByClub(club),
     };
 
+    // Estadísticas para el palo seleccionado
+    final selectedClubAvgDistance = provider.averageDistanceByClub(
+      _selectedClub,
+    );
+    final selectedClubCount = provider.countByClub(_selectedClub);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Sesión de Práctica')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            ClubSelectorWidget(
-              selectedClub: _selectedClub,
-              onClubSelected: (club) => setState(() => _selectedClub = club),
-            ),
-            const SizedBox(height: 16),
-            DistanceInputWidget(
-              value: _distance,
-              onChanged: (val) => setState(() => _distance = val),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _distance != null
-                  ? () {
-                      provider.addShot(
-                        Shot(
-                          clubType: _selectedClub,
-                          distance: _distance!,
-                          timestamp: DateTime.now(),
+      appBar: AppBar(
+        title: const Text('Sesión de Práctica'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.save),
+            onPressed: session != null
+                ? () async {
+                    await provider.saveSession();
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Sesión guardada correctamente'),
                         ),
                       );
-                      setState(() => _distance = null);
                     }
-                  : null,
-              child: const Text('Añadir Tiro'),
-            ),
-            const SizedBox(height: 24),
-            ShotCounterWidget(counts: counts),
-            const Spacer(),
-            ElevatedButton(
-              onPressed: session != null ? provider.saveSession : null,
-              child: const Text('Guardar Sesión'),
-            ),
-          ],
-        ),
+                  }
+                : null,
+            tooltip: 'Guardar Sesión',
+          ),
+        ],
       ),
+      body: session == null
+          ? const Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      // Sección superior - Contador de tiros
+                      Card(
+                        elevation: 4,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Resumen de tiros',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              ShotCounterWidget(counts: counts),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Total: ${session.totalShots} tiros',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 24),
+
+                      // Sección media - Selección de palo
+                      Card(
+                        elevation: 4,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Selecciona el palo',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              ClubSelectorWidget(
+                                selectedClub: _selectedClub,
+                                onClubSelected: (club) =>
+                                    setState(() => _selectedClub = club),
+                              ),
+                              if (selectedClubCount > 0) ...[
+                                const SizedBox(height: 16),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Promedio ${_selectedClub.name.toUpperCase()}:',
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      '${selectedClubAvgDistance.toStringAsFixed(1)} m',
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 24),
+
+                      // Sección inferior - Input de distancia
+                      Card(
+                        elevation: 4,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              const Text(
+                                'Registra el tiro',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              DistanceInputWidget(
+                                value: _distance,
+                                onChanged: (val) =>
+                                    setState(() => _distance = val),
+                              ),
+                              const SizedBox(height: 24),
+                              ElevatedButton.icon(
+                                onPressed: _distance != null && _distance! > 0
+                                    ? () => _addShot(provider)
+                                    : null,
+                                icon: const Icon(Icons.add),
+                                label: const Text('AÑADIR TIRO'),
+                                style: ElevatedButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 12,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 32),
+
+                      // Botón de finalizar sesión
+                      OutlinedButton.icon(
+                        onPressed: () async {
+                          await provider.saveSession();
+                          if (context.mounted) {
+                            provider.endSession();
+                            Navigator.pop(context);
+                          }
+                        },
+                        icon: const Icon(Icons.check_circle),
+                        label: const Text('FINALIZAR SESIÓN'),
+                        style: OutlinedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
     );
   }
 }

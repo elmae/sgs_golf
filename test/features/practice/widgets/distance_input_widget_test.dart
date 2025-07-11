@@ -39,11 +39,11 @@ void main() {
       // Valor menor al rango
       await tester.enterText(find.byType(TextField), '5');
       await tester.pumpAndSettle();
-      expect(find.textContaining('rango'), findsOneWidget);
+      expect(find.textContaining('fuera de rango'), findsWidgets);
       // Valor mayor al rango
       await tester.enterText(find.byType(TextField), '250');
       await tester.pumpAndSettle();
-      expect(find.textContaining('rango'), findsOneWidget);
+      expect(find.textContaining('fuera de rango'), findsWidgets);
       // Valor válido
       await tester.enterText(find.byType(TextField), '80');
       await tester.pumpAndSettle();
