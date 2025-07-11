@@ -140,7 +140,7 @@ class _DistanceInputWidgetState extends State<DistanceInputWidget> {
                 'Ingrese un valor entre ${widget.minRange.toInt()}-${widget.maxRange.toInt()} metros',
             filled: _isFocused,
             fillColor: _isFocused
-                ? theme.primaryColor.withOpacity(0.1)
+                ? theme.primaryColor.withAlpha(25) // 0.1 * 255 = 25.5 ≈ 25
                 : null,
           ),
           onChanged: _onChanged,
