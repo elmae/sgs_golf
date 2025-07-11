@@ -50,7 +50,9 @@ class TestPracticeProvider extends ChangeNotifier implements PracticeProvider {
 
   void setActiveSession(PracticeSession? session) {
     _activeSession = session;
-    _sessionState = session != null ? PracticeSessionState.active : PracticeSessionState.inactive;
+    _sessionState = session != null
+        ? PracticeSessionState.active
+        : PracticeSessionState.inactive;
     notifyListeners();
   }
 
@@ -83,37 +85,38 @@ class TestPracticeProvider extends ChangeNotifier implements PracticeProvider {
 
   @override
   void startSession(DateTime date) {}
-  
+
   @override
   PracticeSessionState get sessionState => _sessionState;
-  
+
   @override
   String? get errorMessage => _errorMessage;
-  
+
   @override
   List<Shot> get shots => _activeSession?.shots ?? [];
-  
+
   @override
   Duration get sessionDuration {
     if (_activeSession == null) return Duration.zero;
-    
+
     final baseDuration = _accumulatedDuration;
     if (_sessionStartTime != null) {
       return baseDuration + DateTime.now().difference(_sessionStartTime!);
     }
     return baseDuration;
   }
-  
+
   @override
   void pauseSession() {
-    if (_sessionState == PracticeSessionState.active && _sessionStartTime != null) {
+    if (_sessionState == PracticeSessionState.active &&
+        _sessionStartTime != null) {
       _accumulatedDuration += DateTime.now().difference(_sessionStartTime!);
       _sessionStartTime = null;
       _sessionState = PracticeSessionState.paused;
       notifyListeners();
     }
   }
-  
+
   @override
   void resumeSession() {
     if (_sessionState == PracticeSessionState.paused) {
@@ -122,7 +125,7 @@ class TestPracticeProvider extends ChangeNotifier implements PracticeProvider {
       notifyListeners();
     }
   }
-  
+
   @override
   void removeShot(Shot shot) {
     if (_activeSession != null && _activeSession!.shots.contains(shot)) {
@@ -137,7 +140,7 @@ class TestPracticeProvider extends ChangeNotifier implements PracticeProvider {
       notifyListeners();
     }
   }
-  
+
   @override
   void discardSession() {
     _activeSession = null;
@@ -148,7 +151,7 @@ class TestPracticeProvider extends ChangeNotifier implements PracticeProvider {
     _errorMessage = null;
     notifyListeners();
   }
-  
+
   @override
   void updateSummary(String summary) {
     if (_activeSession != null) {
@@ -161,26 +164,26 @@ class TestPracticeProvider extends ChangeNotifier implements PracticeProvider {
       notifyListeners();
     }
   }
-  
+
   @override
   double get totalDistance {
     if (_activeSession == null || _activeSession!.shots.isEmpty) return 0.0;
-    
+
     double total = 0.0;
     for (var shot in _activeSession!.shots) {
       total += shot.distance;
     }
     return total;
   }
-  
+
   @override
   int get totalShots => _activeSession?.shots.length ?? 0;
-  
+
   @override
   void clearError() {
     if (_sessionState == PracticeSessionState.error) {
-      _sessionState = _activeSession != null 
-          ? PracticeSessionState.active 
+      _sessionState = _activeSession != null
+          ? PracticeSessionState.active
           : PracticeSessionState.inactive;
       _errorMessage = null;
       notifyListeners();
