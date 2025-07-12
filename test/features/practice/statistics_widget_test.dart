@@ -48,8 +48,9 @@ void main() {
       provider.startSession(DateTime.now());
     });
 
-    testWidgets('StatisticsWidget shows correct data after adding shots',
-        (tester) async {
+    testWidgets('StatisticsWidget shows correct data after adding shots', (
+      tester,
+    ) async {
       // Construir la app
       await tester.pumpWidget(createTestApp());
       await tester.pumpAndSettle();
@@ -79,8 +80,9 @@ void main() {
       expect(find.text('100.0 m'), findsAtLeastNWidgets(1));
     });
 
-    testWidgets('StatisticsWidget updates when shots are added',
-        (tester) async {
+    testWidgets('StatisticsWidget updates when shots are added', (
+      tester,
+    ) async {
       // Construir la app
       await tester.pumpWidget(createTestApp());
       await tester.pumpAndSettle();

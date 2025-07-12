@@ -67,7 +67,7 @@ Sigue este flujo para abordar cualquier issue en este proyecto en el repositorio
 ### 6. 📤 Guarda y sube tus cambios
 
 - Detectar cambios con `git status`. 
-- Agrega los archivos modificados con `git add .` o selecciona archivos específicos.
+- Agrega los archivos modificados con `git add .`.
 - Realiza un `git commit` siguiendo las convenciones de commits:
   - Usa mensajes descriptivos y claros.
   - Usa el formato de encabezado `tipo(área): descripción breve`.

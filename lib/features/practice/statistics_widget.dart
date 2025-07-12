@@ -197,7 +197,9 @@ class StatisticsWidget extends StatelessWidget {
       children: [
         // Encabezado
         TableRow(
-          decoration: BoxDecoration(color: theme.primaryColor.withAlpha(26)), // 0.1 * 255 = 26
+          decoration: BoxDecoration(
+            color: theme.primaryColor.withAlpha(26),
+          ), // 0.1 * 255 = 26
           children: [
             _buildTableCell('Palo', theme, isHeader: true),
             _buildTableCell('Tiros', theme, isHeader: true),

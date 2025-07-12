@@ -81,7 +81,9 @@ class TestPracticeProvider extends ChangeNotifier implements PracticeProvider {
 
   @override
   int countByClub(GolfClubType clubType) {
-    return activeSession?.shots.where((shot) => shot.clubType == clubType).length ??
+    return activeSession?.shots
+            .where((shot) => shot.clubType == clubType)
+            .length ??
         0;
   }
 
