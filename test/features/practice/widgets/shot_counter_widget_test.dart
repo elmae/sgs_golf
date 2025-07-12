@@ -48,6 +48,23 @@ class TestPracticeProvider extends ChangeNotifier implements PracticeProvider {
   @override
   final PracticeRepository repository = MockPracticeRepository();
 
+  /// Implementación del método saveShot requerido
+  @override
+  Future<void> saveShot(Shot shot) async {
+    if (_activeSession != null) {
+      addShot(shot);
+      try {
+        // Implementación simplificada para tests
+        _activeSessionKey ??= 1;
+      } catch (e) {
+        _sessionState = PracticeSessionState.error;
+        _errorMessage = 'Error al guardar el tiro: $e';
+        notifyListeners();
+        rethrow;
+      }
+    }
+  }
+
   void setActiveSession(PracticeSession? session) {
     _activeSession = session;
     _sessionState = session != null

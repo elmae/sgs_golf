@@ -169,6 +169,58 @@ class PracticeProvider extends ChangeNotifier {
     }
   }
 
+  /// Guarda un tiro en la sesión activa y lo persiste en el repositorio
+  Future<void> saveShot(Shot shot) async {
+    if (_activeSession != null) {
+      addShot(shot);
+      try {
+        if (_activeSessionKey == null) {
+          await saveSession();
+        } else {
+          await repository.addShotToSession(_activeSessionKey!, shot);
+        }
+      } catch (e) {
+        _sessionState = PracticeSessionState.error;
+        _errorMessage = 'Error al guardar el tiro: $e';
+        notifyListeners();
+        rethrow;
+      }
+    }
+  }
+
+  /// Número total de tiros en la sesión activa
+  int get totalShots => _activeSession?.totalShots ?? 0;
+
+  /// Distancia total de todos los tiros de la sesión activa
+  double get totalDistance => _activeSession?.totalDistance ?? 0.0;
+
+  /// Cuenta los tiros por tipo de palo
+  int countByClub(GolfClubType clubType) =>
+      _activeSession?.countByClub(clubType) ?? 0;
+
+  /// Promedio de distancia por tipo de palo
+  double averageDistanceByClub(GolfClubType clubType) =>
+      _activeSession?.averageDistanceByClub(clubType) ?? 0.0;
+
+  /// Actualiza el resumen de la sesión
+  void updateSummary(String summary) {
+    if (_activeSession != null) {
+      _activeSession = _activeSession!.copyWith(summary: summary);
+      notifyListeners();
+    }
+  }
+
+  /// Limpia el estado de error y restablece el estado de la sesión si está en error
+  void clearError() {
+    if (_sessionState == PracticeSessionState.error) {
+      _errorMessage = null;
+      _sessionState = _activeSession != null
+          ? PracticeSessionState.active
+          : PracticeSessionState.inactive;
+      notifyListeners();
+    }
+  }
+
   /// Finaliza la sesión actual, guardándola y liberando los recursos
   Future<void> endSession() async {
     try {
@@ -196,40 +248,5 @@ class PracticeProvider extends ChangeNotifier {
     _accumulatedDuration = Duration.zero;
     _errorMessage = null;
     notifyListeners();
-  }
-
-  /// Actualiza el resumen de la sesión
-  void updateSummary(String summary) {
-    if (_activeSession != null) {
-      _activeSession = _activeSession!.copyWith(summary: summary);
-      notifyListeners();
-    }
-  }
-
-  // Estadísticas en tiempo real
-
-  /// Obtiene el conteo de tiros por tipo de palo
-  int countByClub(GolfClubType clubType) =>
-      _activeSession?.countByClub(clubType) ?? 0;
-
-  /// Obtiene la distancia promedio por tipo de palo
-  double averageDistanceByClub(GolfClubType clubType) =>
-      _activeSession?.averageDistanceByClub(clubType) ?? 0;
-
-  /// Obtiene la distancia total de todos los tiros
-  double get totalDistance => _activeSession?.totalDistance ?? 0;
-
-  /// Obtiene el número total de tiros
-  int get totalShots => _activeSession?.totalShots ?? 0;
-
-  /// Limpia los errores actuales
-  void clearError() {
-    if (_sessionState == PracticeSessionState.error) {
-      _sessionState = _activeSession != null
-          ? PracticeSessionState.active
-          : PracticeSessionState.inactive;
-      _errorMessage = null;
-      notifyListeners();
-    }
   }
 }

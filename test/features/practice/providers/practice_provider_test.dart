@@ -10,9 +10,12 @@ class MockPracticeRepository extends Mock implements PracticeRepository {}
 
 class FakePracticeSession extends Fake implements PracticeSession {}
 
+class FakeShot extends Fake implements Shot {}
+
 void main() {
   setUpAll(() {
     registerFallbackValue(FakePracticeSession());
+    registerFallbackValue(FakeShot());
   });
 
   late PracticeProvider provider;
@@ -221,6 +224,49 @@ void main() {
       expect(provider.activeSession, isNull);
       expect(provider.activeSessionKey, isNull);
       expect(provider.sessionState, equals(PracticeSessionState.inactive));
+    });
+
+    test(
+      'saveShot creates new session and persists shot when no key exists',
+      () async {
+        // Arrange
+        provider.startSession(testDate);
+        when(
+          () => mockRepository.createSession(any()),
+        ).thenAnswer((_) async => 456);
+        when(
+          () => mockRepository.addShotToSession(any(), any()),
+        ).thenAnswer((_) async {});
+
+        // Act
+        await provider.saveShot(testShot);
+
+        // Assert
+        verify(() => mockRepository.createSession(any())).called(1);
+        expect(provider.activeSessionKey, equals(456));
+        expect(provider.sessionState, equals(PracticeSessionState.active));
+        expect(provider.totalShots, equals(1));
+      },
+    );
+
+    test('saveShot persists shot when session key exists', () async {
+      // Arrange
+      provider.startSession(testDate);
+      when(
+        () => mockRepository.createSession(any()),
+      ).thenAnswer((_) async => 789);
+      when(
+        () => mockRepository.addShotToSession(any(), any()),
+      ).thenAnswer((_) async {});
+      // Initial save to set key
+      await provider.saveShot(testShot);
+
+      // Act: save another shot
+      await provider.saveShot(testShot);
+
+      // Assert
+      verify(() => mockRepository.addShotToSession(789, any())).called(1);
+      expect(provider.totalShots, equals(2));
     });
   });
 
