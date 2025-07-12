@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:sgs_golf/data/models/golf_club.dart';
 import 'package:sgs_golf/data/models/practice_session.dart';
+import 'package:sgs_golf/data/models/session_statistics.dart';
 import 'package:sgs_golf/data/models/shot.dart';
 import 'package:sgs_golf/data/repositories/practice_repository.dart';
 import 'package:sgs_golf/features/practice/providers/practice_provider.dart';
@@ -38,6 +39,11 @@ class TestPracticeProvider extends ChangeNotifier implements PracticeProvider {
   String? _errorMessage;
   Duration _accumulatedDuration = Duration.zero;
   DateTime? _sessionStartTime;
+
+  // Añadimos el getter de estadísticas requerido
+  final _statistics = SessionStatistics.empty();
+  @override
+  SessionStatistics get statistics => _statistics;
 
   @override
   PracticeSession? get activeSession => _activeSession;
@@ -75,7 +81,7 @@ class TestPracticeProvider extends ChangeNotifier implements PracticeProvider {
 
   @override
   int countByClub(GolfClubType clubType) {
-    return activeSession?.shots.where((s) => s.clubType == clubType).length ??
+    return activeSession?.shots.where((shot) => shot.clubType == clubType).length ??
         0;
   }
 

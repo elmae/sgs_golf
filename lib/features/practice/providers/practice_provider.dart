@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sgs_golf/data/models/golf_club.dart';
 import 'package:sgs_golf/data/models/practice_session.dart';
 import 'package:sgs_golf/data/models/practice_session_ext.dart';
+import 'package:sgs_golf/data/models/session_statistics.dart';
 import 'package:sgs_golf/data/models/shot.dart';
 import 'package:sgs_golf/data/repositories/practice_repository.dart';
 
@@ -55,7 +56,33 @@ class PracticeProvider extends ChangeNotifier {
   /// Tiempo de inicio de la sesión actual (usado para calcular la duración)
   DateTime? _sessionStartTime;
 
-  PracticeProvider(this.repository);
+  /// Estadísticas calculadas en tiempo real
+  SessionStatistics _statistics = SessionStatistics.empty();
+
+  PracticeProvider(this.repository) {
+    // Iniciar timer para actualizar las estadísticas cada 10 segundos cuando la sesión está activa
+    _setupPeriodicStatisticsUpdate();
+  }
+
+  /// Configura la actualización periódica de estadísticas
+  void _setupPeriodicStatisticsUpdate() {
+    // Usar un Future.delayed recursivo para actualizar cada 10 segundos
+    Future.delayed(const Duration(seconds: 10), () {
+      // Solo actualizar si la sesión está activa
+      if (_sessionState == PracticeSessionState.active) {
+        _calculateStatistics();
+        notifyListeners();
+      }
+
+      // Volver a programar la próxima actualización
+      if (_sessionState != PracticeSessionState.inactive) {
+        _setupPeriodicStatisticsUpdate();
+      }
+    });
+  }
+
+  /// Obtiene las estadísticas en tiempo real de la sesión actual
+  SessionStatistics get statistics => _statistics;
 
   /// Obtiene la sesión activa actual
   PracticeSession? get activeSession => _activeSession;
@@ -90,6 +117,7 @@ class PracticeProvider extends ChangeNotifier {
     _sessionStartTime = DateTime.now();
     _accumulatedDuration = Duration.zero;
     _errorMessage = null;
+    _calculateStatistics();
     notifyListeners();
   }
 
@@ -133,6 +161,7 @@ class PracticeProvider extends ChangeNotifier {
 
         _activeSession = updatedSession;
         _sessionState = PracticeSessionState.active;
+        _calculateStatistics();
         notifyListeners();
       } catch (e) {
         _sessionState = PracticeSessionState.error;
@@ -155,6 +184,7 @@ class PracticeProvider extends ChangeNotifier {
       _activeSession = _activeSession!.copyWith(
         shots: List<Shot>.from(_activeSession!.shots)..add(shot),
       );
+      _calculateStatistics();
       notifyListeners();
     }
   }
@@ -165,6 +195,7 @@ class PracticeProvider extends ChangeNotifier {
       _activeSession = _activeSession!.copyWith(
         shots: List<Shot>.from(_activeSession!.shots)..remove(shot),
       );
+      _calculateStatistics();
       notifyListeners();
     }
   }
@@ -202,6 +233,57 @@ class PracticeProvider extends ChangeNotifier {
   double averageDistanceByClub(GolfClubType clubType) =>
       _activeSession?.averageDistanceByClub(clubType) ?? 0.0;
 
+  /// Calcula las estadísticas en tiempo real de la sesión actual
+  void _calculateStatistics() {
+    if (_activeSession == null || _activeSession!.shots.isEmpty) {
+      _statistics = SessionStatistics.empty();
+      return;
+    }
+
+    final shots = _activeSession!.shots;
+    final totalShots = shots.length;
+    final totalDistance = shots.fold<double>(0, (sum, s) => sum + s.distance);
+    final averageDistance = totalShots > 0 ? totalDistance / totalShots : 0.0;
+
+    // Calcular estadísticas por tipo de palo
+    final shotCounts = <GolfClubType, int>{};
+    final totalDistanceByClub = <GolfClubType, double>{};
+    final averageDistanceByClub = <GolfClubType, double>{};
+
+    for (final club in GolfClubType.values) {
+      final clubShots = shots.where((s) => s.clubType == club).toList();
+      final clubCount = clubShots.length;
+      shotCounts[club] = clubCount;
+
+      final clubTotalDistance = clubShots.fold<double>(
+        0,
+        (sum, s) => sum + s.distance,
+      );
+      totalDistanceByClub[club] = clubTotalDistance;
+
+      averageDistanceByClub[club] = clubCount > 0
+          ? clubTotalDistance / clubCount
+          : 0.0;
+    }
+
+    // Calcular tasa de tiros por minuto
+    final durationInMinutes = sessionDuration.inSeconds / 60.0;
+    final shotsPerMinute = durationInMinutes > 0
+        ? totalShots / durationInMinutes
+        : null;
+
+    _statistics = SessionStatistics(
+      totalShots: totalShots,
+      totalDistance: totalDistance,
+      averageDistance: averageDistance,
+      shotCounts: shotCounts,
+      totalDistanceByClub: totalDistanceByClub,
+      averageDistanceByClub: averageDistanceByClub,
+      durationInMinutes: durationInMinutes,
+      shotsPerMinute: shotsPerMinute,
+    );
+  }
+
   /// Actualiza el resumen de la sesión
   void updateSummary(String summary) {
     if (_activeSession != null) {
@@ -235,6 +317,7 @@ class PracticeProvider extends ChangeNotifier {
       _sessionStartTime = null;
       _accumulatedDuration = Duration.zero;
       _errorMessage = null;
+      _statistics = SessionStatistics.empty();
       notifyListeners();
     }
   }
@@ -247,6 +330,7 @@ class PracticeProvider extends ChangeNotifier {
     _sessionStartTime = null;
     _accumulatedDuration = Duration.zero;
     _errorMessage = null;
+    _statistics = SessionStatistics.empty();
     notifyListeners();
   }
 }
