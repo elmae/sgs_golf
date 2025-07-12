@@ -305,6 +305,36 @@ void main() {
       expect(provider.averageDistanceByClub(GolfClubType.sw), equals(0));
     });
 
+    test('statistics get updated when shots are added', () {
+      // Arrange
+      provider.startSession(testDate);
+
+      // Act - Add first shot
+      provider.addShot(
+        Shot(clubType: GolfClubType.pw, distance: 80.0, timestamp: testDate),
+      );
+
+      // Assert - Check statistics after first shot
+      expect(provider.statistics.totalShots, equals(1));
+      expect(provider.statistics.totalDistance, equals(80.0));
+      expect(provider.statistics.averageDistance, equals(80.0));
+      expect(provider.statistics.shotCounts[GolfClubType.pw], equals(1));
+
+      // Act - Add second shot
+      provider.addShot(
+        Shot(clubType: GolfClubType.sw, distance: 60.0, timestamp: testDate),
+      );
+
+      // Assert - Check updated statistics
+      expect(provider.statistics.totalShots, equals(2));
+      expect(provider.statistics.totalDistance, equals(140.0));
+      expect(provider.statistics.averageDistance, equals(70.0));
+      expect(provider.statistics.shotCounts[GolfClubType.pw], equals(1));
+      expect(provider.statistics.shotCounts[GolfClubType.sw], equals(1));
+      expect(provider.statistics.getMostUsedClubType(), isNotNull);
+      expect(provider.statistics.getLongestClubType(), equals(GolfClubType.pw));
+    });
+
     test('totalDistance returns sum of all shot distances', () {
       // Arrange
       provider.startSession(testDate);

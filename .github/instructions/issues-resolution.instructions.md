@@ -6,7 +6,8 @@ Sigue este flujo para abordar cualquier issue en este proyecto en el repositorio
 
 ### 1. 🧠 Obtén y comprende el contexto
 
-- Lee en elmae/sgs_golf el issue solicitado, en detalle. Usa el MCP server `github-mcp` .
+- Asegúrate de tener acceso al repositorio `elmae/sgs_golf` en GitHub. Usa el MCP server `github-mcp`.
+- Lee en elmae/sgs_golf el issue solicitado, en detalle. 
 - en caso de ser necesario, Consulta los documentos clave disponibles en `docs/`:
   - [`tasks-prd-sgs-golf.md`](docs/tasks-prd-sgs-golf.md)
   - [`knowledge-base.md`](docs/knowledge-base.md) 
@@ -14,7 +15,7 @@ Sigue este flujo para abordar cualquier issue en este proyecto en el repositorio
  
 --- 
 
-### 2. 🔍 Analiza el problema y el alcance
+### 2. 🔍 Analiza el problema (issue) y el alcance
 
 - Identifica los archivos y módulos relevantes:
   - Revisa el árbol de directorios en `lib/` para ubicar módulos relacionados.
@@ -56,39 +57,45 @@ Sigue este flujo para abordar cualquier issue en este proyecto en el repositorio
 
 ### 5. ✅ Valida y prueba
 
-- Ejecuta flutter test y asegúrate de que todas las pruebas pasen. Si alguna prueba falla, corrige todos los errores reportados y vuelve a ejecutar los tests hasta que el resultado sea completamente exitoso.
-- Corre el análisis estático con flutter analyze. Si se detectan advertencias o errores, repáralos completamente y vuelve a ejecutar el comando hasta obtener una salida limpia.
+- Ejecutar `dart format .` para formatear el código según las convenciones de estilo de Dart.
+- Ejecutar `flutter test` y asegúrate de que todas las pruebas pasen. Si alguna prueba falla, corrige todos los errores reportados y vuelve a ejecutar los tests hasta que el resultado sea completamente exitoso.
+- Corre el análisis estático con `flutter analyze`. Si se detectan advertencias o errores, repáralos completamente y vuelve a ejecutar el comando hasta obtener una salida limpia.
 - Si agregas dependencias, actualiza y documenta los cambios en `pubspec.yaml`.
 
 ---
 
 ### 6. 📤 Guarda y sube tus cambios
 
-- Guarda todos los archivos modificados.
-- Realiza commit con un mensaje descriptivo, en minúsculas, siguiendo [las reglas de conventional commits](https://www.conventionalcommits.org).
+- Detectar cambios con `git status`. 
+- Agrega los archivos modificados con `git add .`.
+- Realiza un `git commit` siguiendo las convenciones de commits:
+  - Usa mensajes descriptivos y claros.
+  - Usa el formato de encabezado `tipo(área): descripción breve`.
+  - Usa solo letras minusculas.
   - 📌 Ejemplos:
     ```bash
     feat(data): agrega integración con api de disponibilidad
     fix(core): corrige validación de usuario en pantalla de reservas
-    ```
-- Realiza `push` a GitHub para activar el pipeline de CI automáticamente.
+    ```- 
+- Realiza un `git push` a tu rama `develop` en el repositorio remoto.
 
 ---
 
 ### 7. 🚀 Prepara el Pull Request
 
 - Solicita autorización del responsable técnico antes de solicitar el PR.
-- Si todas las validaciones del pipeline de CI son exitosas (`test`, `analyze`, `coverage`), genera un PR desde `develop` hacia `main`.
+- Si todas las validaciones del pipeline de CI son exitosas (`test`, `analyze`), genera un PR desde `develop` hacia `main`.
 - Incluye contexto, dependencias y ejemplos en la descripción.
 - Relaciona el PR con el issue correspondiente.
 
 ---
 
-### ✅ Checklist antes del PR
+### 8. ✅ Checklist antes del PR
 completa este checklist para asegurarte de que todo está en orden:
-- [ ] El código sigue las [Flutter Coding Standards](flutter-coding-standards.instructions.md)
+- [ ] El código sigue las Flutter Coding Standards
 - [ ] Todos los errores de prueba fueron corregidos y `flutter test` muestra salida limpia
 - [ ] Todos los errores y advertencias fueron corregidos y `flutter analyze` muestra salida limpia
+- [ ] El código está formateado correctamente con `dart format .`
 - [ ] Las dependencias están actualizadas en `pubspec.yaml` si aplica
 - [ ] Commit realizado con formato convencional
 - [ ] PR enlazado con el issue correspondiente y documentado
@@ -100,3 +107,5 @@ completa este checklist para asegurarte de que todo está en orden:
 > - Criterios de calidad y reglas de colaboración: ver [`knowledge-base.md`](docs/knowledge-base.md)
 > - Antes de documentar o implementar dependencias/APIs, consulta el MCP context7 para validar que sean actuales y recomendadas.
 
+---
+Estas instrucciones son obligatorias y deben ser seguidas en todo momento cuando se trabaja en este repositorio.

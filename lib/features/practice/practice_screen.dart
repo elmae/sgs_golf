@@ -6,6 +6,7 @@ import 'package:sgs_golf/features/practice/club_selector_widget.dart';
 import 'package:sgs_golf/features/practice/distance_input_widget.dart';
 import 'package:sgs_golf/features/practice/providers/practice_provider.dart';
 import 'package:sgs_golf/features/practice/shot_counter_widget.dart';
+import 'package:sgs_golf/features/practice/statistics_widget.dart';
 
 class PracticeScreen extends StatefulWidget {
   const PracticeScreen({super.key});
@@ -233,7 +234,12 @@ class _PracticeScreenState extends State<PracticeScreen> {
 
                       const SizedBox(height: 32),
 
+                      // Sección de estadísticas en tiempo real
+                      const SizedBox(height: 24),
+                      StatisticsWidget(statistics: provider.statistics),
+
                       // Botón de finalizar sesión
+                      const SizedBox(height: 24),
                       OutlinedButton.icon(
                         onPressed: () async {
                           await provider.saveSession();
