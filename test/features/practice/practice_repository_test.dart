@@ -49,5 +49,56 @@ void main() {
       await repo.addShotToSession(1, shot);
       verify(() => box.put(1, any())).called(1);
     });
+
+    test('getAllSessions returns all sessions', () {
+      when(() => box.values).thenReturn([session]);
+      final sessions = repo.getAllSessions();
+      expect(sessions, [session]);
+      verify(() => box.values).called(1);
+    });
+
+    test('updateSession updates a session', () async {
+      final updatedSession = PracticeSession(
+        date: DateTime.now(),
+        duration: const Duration(minutes: 90),
+        shots: const [],
+        summary: 'Updated summary',
+      );
+      when(() => box.put(1, updatedSession)).thenAnswer((_) async => {});
+      await repo.updateSession(1, updatedSession);
+      verify(() => box.put(1, updatedSession)).called(1);
+    });
+
+    test('deleteSession deletes a session', () async {
+      when(() => box.delete(1)).thenAnswer((_) async => {});
+      await repo.deleteSession(1);
+      verify(() => box.delete(1)).called(1);
+    });
+
+    test('getSessionByKey returns a session', () {
+      when(() => box.get(1)).thenReturn(session);
+      final result = repo.getSessionByKey(1);
+      expect(result, session);
+      verify(() => box.get(1)).called(1);
+    });
+
+    test('getSessionByKey returns null when no session found', () {
+      when(() => box.get(999)).thenReturn(null);
+      final result = repo.getSessionByKey(999);
+      expect(result, null);
+      verify(() => box.get(999)).called(1);
+    });
+
+    test('addShotToSession does nothing when session not found', () async {
+      final shot = Shot(
+        clubType: GolfClubType.pw,
+        distance: 100,
+        timestamp: DateTime.now(),
+      );
+      when(() => box.get(999)).thenReturn(null);
+      await repo.addShotToSession(999, shot);
+      verify(() => box.get(999)).called(1);
+      verifyNever(() => box.put(any(), any()));
+    });
   });
 }
