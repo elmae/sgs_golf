@@ -140,21 +140,21 @@ void main() {
           ),
         ],
         summary: 'Sesión inicial',
-      );      // Configurar el repositorio para devolver la sesión guardada
+      ); // Configurar el repositorio para devolver la sesión guardada
       when(() => repository.getSessionByKey(1)).thenReturn(initialSession);
       when(() => repository.createSession(any())).thenAnswer((_) async => 1);
-      
+
       // Método auxiliar para añadir un tiro
       void addShot(Shot shot) {
         practiceProvider.addShot(shot);
       }
-      
+
       // Iniciar nueva sesión y guardarla
       practiceProvider.startSession(DateTime.now());
-      
+
       // Añadir tiros a la sesión usando forEach con método auxiliar
       initialSession.shots.forEach(addShot);
-      
+
       // Guardar la sesión
       await practiceProvider.saveSession();
 
