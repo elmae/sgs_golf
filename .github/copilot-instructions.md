@@ -88,7 +88,7 @@ SGS Golf es una aplicación para registrar y analizar sesiones de práctica de j
 - Documentar el propósito de cada paquete en `pubspec.yaml`.
 - Estructura futura para soportar métricas adicionales como `spinrate` y `angleofattack`.
 
-## 🧭 Instrucciones para Issues en GitHub
+## 🧭 Instrucciones para Resolucion Issues en GitHub
 
 Para resolución de issues, sigue las instrucciones detalladas en:
 [issues-resolution.instructions.md](instructions/issues-resolution.instructions.md)
