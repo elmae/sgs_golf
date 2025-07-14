@@ -33,7 +33,9 @@ void main() {
     ),
   ];
 
-  testWidgets('SessionListWidget muestra las sesiones correctamente', (tester) async {
+  testWidgets('SessionListWidget muestra las sesiones correctamente', (
+    tester,
+  ) async {
     bool tapCalled = false;
     bool deleteCalled = false;
 
@@ -66,7 +68,9 @@ void main() {
     expect(deleteCalled, isTrue);
   });
 
-  testWidgets('SessionListWidget muestra mensaje cuando no hay sesiones', (tester) async {
+  testWidgets('SessionListWidget muestra mensaje cuando no hay sesiones', (
+    tester,
+  ) async {
     const testMessage = 'No hay sesiones disponibles';
 
     await tester.pumpWidget(
@@ -82,7 +86,9 @@ void main() {
     expect(find.byIcon(Icons.sports_golf), findsOneWidget);
   });
 
-  testWidgets('SessionListWidget respeta el límite máximo de sesiones', (tester) async {
+  testWidgets('SessionListWidget respeta el límite máximo de sesiones', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(

@@ -20,7 +20,7 @@ void main() {
     // Inicializar Hive para pruebas usando un directorio temporal
     final tempDir = await Directory.systemTemp.createTemp('hive_test_');
     Hive.init(tempDir.path);
-    
+
     // Registrar los adaptadores necesarios
     if (!Hive.isAdapterRegistered(0)) {
       Hive.registerAdapter(UserAdapter());
@@ -40,12 +40,12 @@ void main() {
     if (!Hive.isAdapterRegistered(99)) {
       Hive.registerAdapter(DurationAdapter());
     }
-    
+
     // Abrir las cajas para las pruebas
     await Hive.openBox<User>('users');
     await Hive.openBox<PracticeSession>('practiceSessions');
   });
-  
+
   tearDownAll(() async {
     // Cerrar todas las cajas al finalizar
     await Hive.close();

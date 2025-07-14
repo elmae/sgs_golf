@@ -65,7 +65,9 @@ void main() {
     ];
   });
 
-  testWidgets('DashboardScreen muestra correctamente las sesiones', (tester) async {
+  testWidgets('DashboardScreen muestra correctamente las sesiones', (
+    tester,
+  ) async {
     // Configurar el mock
     when(
       () => mockPracticeRepository.getAllSessions(),
@@ -103,7 +105,9 @@ void main() {
     expect(find.text('Práctica de SW y LW'), findsOneWidget);
   });
 
-  testWidgets('DashboardScreen muestra estado vacío cuando no hay sesiones', (tester) async {
+  testWidgets('DashboardScreen muestra estado vacío cuando no hay sesiones', (
+    tester,
+  ) async {
     // Configurar el mock para devolver lista vacía
     when(() => mockPracticeRepository.getAllSessions()).thenReturn([]);
 
@@ -129,7 +133,9 @@ void main() {
     expect(find.text('Iniciar práctica'), findsOneWidget);
   });
 
-  testWidgets('DashboardScreen muestra error cuando falla la carga', (tester) async {
+  testWidgets('DashboardScreen muestra error cuando falla la carga', (
+    tester,
+  ) async {
     // Configurar el mock para lanzar una excepción
     when(
       () => mockPracticeRepository.getAllSessions(),
@@ -156,7 +162,9 @@ void main() {
     expect(find.text('Reintentar'), findsOneWidget);
   });
 
-  testWidgets('DashboardScreen refresca datos al presionar botón', (tester) async {
+  testWidgets('DashboardScreen refresca datos al presionar botón', (
+    tester,
+  ) async {
     // Configurar el mock
     when(
       () => mockPracticeRepository.getAllSessions(),

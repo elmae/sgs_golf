@@ -24,7 +24,9 @@ void main() {
     summary: 'Resumen de la sesión de prueba',
   );
 
-  testWidgets('SessionCard muestra la información básica correctamente', (tester) async {
+  testWidgets('SessionCard muestra la información básica correctamente', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(body: SessionCard(session: testSession)),
@@ -51,7 +53,9 @@ void main() {
     expect(find.text('Desglose por palo:'), findsNothing);
   });
 
-  testWidgets('SessionCard muestra detalles completos cuando se solicita', (tester) async {
+  testWidgets('SessionCard muestra detalles completos cuando se solicita', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -85,7 +89,9 @@ void main() {
     expect(tapCalled, isTrue);
   });
 
-  testWidgets('SessionCard muestra botón de eliminar y llama onDelete', (tester) async {
+  testWidgets('SessionCard muestra botón de eliminar y llama onDelete', (
+    tester,
+  ) async {
     bool deleteCalled = false;
 
     await tester.pumpWidget(
@@ -107,7 +113,9 @@ void main() {
     expect(deleteCalled, isTrue);
   });
 
-  testWidgets('SessionCard no muestra botón de eliminar si onDelete es null', (tester) async {
+  testWidgets('SessionCard no muestra botón de eliminar si onDelete es null', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(body: SessionCard(session: testSession)),
