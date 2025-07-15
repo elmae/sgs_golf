@@ -304,6 +304,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         SessionListWidget(
           sessions: provider.sessions,
           maxSessions: 5, // Mostrar solo las 5 más recientes
+          showFilters: true, // Activar opciones de filtrado y ordenamiento
           onSessionTap: (session) {
             // En futuras implementaciones, navegar a detalle de sesión
           },
