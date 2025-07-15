@@ -196,4 +196,121 @@ void main() {
     // Verificar que se vuelve a llamar al método getAllSessions
     verify(() => mockPracticeRepository.getAllSessions()).called(1);
   });
+
+  testWidgets('Navegación al hacer tap en botón de Práctica en dashboard', (
+    tester,
+  ) async {
+    // Configurar el mock
+    when(
+      () => mockPracticeRepository.getAllSessions(),
+    ).thenReturn(mockSessions);
+
+    // Preparar mapa de rutas para pruebas de navegación
+    final mockRoutes = {
+      '/practice': (context) => const Scaffold(
+        key: Key('practice-screen'),
+        body: Center(child: Text('Pantalla de Práctica')),
+      ),
+    };
+
+    // Crear el widget bajo test con el provider
+    await tester.pumpWidget(
+      MaterialApp(
+        routes: mockRoutes,
+        home: ChangeNotifierProvider(
+          create: (_) => DashboardProvider(mockPracticeRepository),
+          child: const DashboardScreen(),
+        ),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    // Buscar y pulsar el botón de Práctica
+    expect(find.text('Práctica'), findsOneWidget);
+    await tester.tap(find.text('Práctica'));
+    await tester.pumpAndSettle();
+
+    // Verificar que se ha navegado a la pantalla correcta
+    expect(find.byKey(const Key('practice-screen')), findsOneWidget);
+    expect(find.text('Pantalla de Práctica'), findsOneWidget);
+  });
+
+  testWidgets('Navegación al hacer tap en botón de Análisis en dashboard', (
+    tester,
+  ) async {
+    // Configurar el mock
+    when(
+      () => mockPracticeRepository.getAllSessions(),
+    ).thenReturn(mockSessions);
+
+    // Preparar mapa de rutas para pruebas de navegación
+    final mockRoutes = {
+      '/analysis': (context) => const Scaffold(
+        key: Key('analysis-screen'),
+        body: Center(child: Text('Pantalla de Análisis')),
+      ),
+    };
+
+    // Crear el widget bajo test con el provider
+    await tester.pumpWidget(
+      MaterialApp(
+        routes: mockRoutes,
+        home: ChangeNotifierProvider(
+          create: (_) => DashboardProvider(mockPracticeRepository),
+          child: const DashboardScreen(),
+        ),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    // Buscar y pulsar el botón de Análisis
+    expect(find.text('Análisis'), findsOneWidget);
+    await tester.tap(find.text('Análisis'));
+    await tester.pumpAndSettle();
+
+    // Verificar que se ha navegado a la pantalla correcta
+    expect(find.byKey(const Key('analysis-screen')), findsOneWidget);
+    expect(find.text('Pantalla de Análisis'), findsOneWidget);
+  });
+
+  testWidgets('Navegación al hacer tap en botón de Exportar en dashboard', (
+    tester,
+  ) async {
+    // Configurar el mock
+    when(
+      () => mockPracticeRepository.getAllSessions(),
+    ).thenReturn(mockSessions);
+
+    // Preparar mapa de rutas para pruebas de navegación
+    final mockRoutes = {
+      '/export': (context) => const Scaffold(
+        key: Key('export-screen'),
+        body: Center(child: Text('Pantalla de Exportación')),
+      ),
+    };
+
+    // Crear el widget bajo test con el provider
+    await tester.pumpWidget(
+      MaterialApp(
+        routes: mockRoutes,
+        home: ChangeNotifierProvider(
+          create: (_) => DashboardProvider(mockPracticeRepository),
+          child: const DashboardScreen(),
+        ),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    // Buscar y pulsar el botón de Exportar
+    expect(find.text('Exportar'), findsOneWidget);
+    await tester.tap(find.text('Exportar'));
+    await tester.pumpAndSettle();
+
+    // Verificar que se ha navegado a la pantalla correcta
+    expect(find.byKey(const Key('export-screen')), findsOneWidget);
+    expect(find.text('Pantalla de Exportación'), findsOneWidget);
+  });
 }
