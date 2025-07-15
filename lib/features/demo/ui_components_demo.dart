@@ -189,7 +189,9 @@ class UIComponentsDemo extends StatelessWidget {
         AppChip(
           label: 'Seleccionable',
           selectable: true,
-          backgroundColor: AppColors.verdeCampo.withAlpha(38), // alpha 38 ~ opacity 0.15
+          backgroundColor: AppColors.verdeCampo.withAlpha(
+            38,
+          ), // alpha 38 ~ opacity 0.15
           textColor: AppColors.verdeCampo,
           onTap: () {},
         ),

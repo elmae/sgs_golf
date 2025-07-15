@@ -15,9 +15,6 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppButton(
-      text: label,
-      onPressed: onPressed,
-    );
+    return AppButton(text: label, onPressed: onPressed);
   }
 }

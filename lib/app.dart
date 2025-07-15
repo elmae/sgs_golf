@@ -23,7 +23,7 @@ class SGSGolfApp extends StatelessWidget {
     final practiceRepository = PracticeRepository(
       Hive.box<PracticeSession>('practiceSessions'),
     );
-    
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(

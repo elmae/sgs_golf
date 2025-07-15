@@ -7,16 +7,11 @@ void main() {
   group('AppButton', () {
     testWidgets('muestra el texto correctamente', (tester) async {
       const String buttonText = 'Botón de prueba';
-      
+
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: Center(
-              child: AppButton(
-                text: buttonText,
-                onPressed: null,
-              ),
-            ),
+            body: Center(child: AppButton(text: buttonText, onPressed: null)),
           ),
         ),
       );
@@ -27,7 +22,7 @@ void main() {
 
     testWidgets('ejecuta onPressed cuando se presiona', (tester) async {
       bool wasPressed = false;
-      
+
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -44,12 +39,14 @@ void main() {
       // Presionar el botón
       await tester.tap(find.byType(ElevatedButton));
       await tester.pump();
-      
+
       // Verificar que se ejecutó el callback
       expect(wasPressed, isTrue);
     });
 
-    testWidgets('muestra el indicador de carga cuando isLoading=true', (tester) async {
+    testWidgets('muestra el indicador de carga cuando isLoading=true', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -66,7 +63,7 @@ void main() {
 
       // Verificar que el indicador de carga se muestra
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
-      
+
       // Verificar que el texto no se muestra
       expect(find.text('Cargando'), findsNothing);
     });
@@ -109,7 +106,9 @@ void main() {
       expect(find.text('Botón primario'), findsOneWidget);
     });
 
-    testWidgets('crea un botón secundario con el color correcto', (tester) async {
+    testWidgets('crea un botón secundario con el color correcto', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -122,7 +121,7 @@ void main() {
           ),
         ),
       );
-      
+
       // Verificar que el botón existe y tiene el texto correcto
       expect(find.byType(ElevatedButton), findsOneWidget);
       expect(find.text('Botón secundario'), findsOneWidget);
@@ -133,10 +132,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppButton.text(
-                text: 'Botón de texto',
-                onPressed: () {},
-              ),
+              child: AppButton.text(text: 'Botón de texto', onPressed: () {}),
             ),
           ),
         ),

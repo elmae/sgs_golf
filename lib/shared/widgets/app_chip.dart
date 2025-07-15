@@ -65,7 +65,9 @@ class AppChip extends StatelessWidget {
     return AppChip(
       key: key,
       label: label,
-      backgroundColor: AppColors.zanahoriaIntensa.withAlpha(38), // alpha 38 ~ opacity 0.15
+      backgroundColor: AppColors.zanahoriaIntensa.withAlpha(
+        38,
+      ), // alpha 38 ~ opacity 0.15
       textColor: AppColors.zanahoriaIntensa,
       iconColor: AppColors.zanahoriaIntensa,
       icon: icon,
@@ -91,7 +93,9 @@ class AppChip extends StatelessWidget {
     return AppChip(
       key: key,
       label: label,
-      backgroundColor: AppColors.verdeCampo.withAlpha(38), // alpha 38 ~ opacity 0.15
+      backgroundColor: AppColors.verdeCampo.withAlpha(
+        38,
+      ), // alpha 38 ~ opacity 0.15
       textColor: AppColors.verdeCampo,
       iconColor: AppColors.verdeCampo,
       icon: icon,
@@ -117,7 +121,9 @@ class AppChip extends StatelessWidget {
     return AppChip(
       key: key,
       label: label,
-      backgroundColor: AppColors.azulProfundo.withAlpha(38), // alpha 38 ~ opacity 0.15
+      backgroundColor: AppColors.azulProfundo.withAlpha(
+        38,
+      ), // alpha 38 ~ opacity 0.15
       textColor: AppColors.azulProfundo,
       iconColor: AppColors.azulProfundo,
       icon: icon,
@@ -143,7 +149,9 @@ class AppChip extends StatelessWidget {
     return AppChip(
       key: key,
       label: label,
-      backgroundColor: AppColors.grisOscuro.withAlpha(25), // alpha 25 ~ opacity 0.1
+      backgroundColor: AppColors.grisOscuro.withAlpha(
+        25,
+      ), // alpha 25 ~ opacity 0.1
       textColor: AppColors.grisOscuro,
       iconColor: AppColors.grisOscuro,
       icon: icon,
@@ -164,7 +172,8 @@ class AppChip extends StatelessWidget {
         selected: selected,
         onSelected: onTap != null ? (_) => onTap!() : null,
         backgroundColor:
-            backgroundColor ?? AppColors.grisSuave.withAlpha(76), // alpha 76 ~ opacity 0.3
+            backgroundColor ??
+            AppColors.grisSuave.withAlpha(76), // alpha 76 ~ opacity 0.3
         selectedColor: selected
             ? (backgroundColor ?? AppColors.azulProfundo)
             : backgroundColor?.withAlpha(51) ??
@@ -173,17 +182,20 @@ class AppChip extends StatelessWidget {
           color: selected
               ? (textColor != null ? Colors.white : Colors.white)
               : (textColor ?? AppColors.grisOscuro),
-        ),      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      visualDensity: VisualDensity.compact,
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      showCheckmark: false,
+        ),
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        visualDensity: VisualDensity.compact,
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        showCheckmark: false,
       );
     }
 
     // Si no es seleccionable, crear un Chip básico
     return Chip(
       label: _buildChipContent(),
-      backgroundColor: backgroundColor ?? AppColors.grisSuave.withAlpha(76), // alpha 76 ~ opacity 0.3
+      backgroundColor:
+          backgroundColor ??
+          AppColors.grisSuave.withAlpha(76), // alpha 76 ~ opacity 0.3
       labelStyle: TextStyle(color: textColor ?? AppColors.grisOscuro),
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       visualDensity: VisualDensity.compact,

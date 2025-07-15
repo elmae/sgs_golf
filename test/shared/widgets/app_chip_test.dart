@@ -7,15 +7,11 @@ void main() {
   group('AppChip', () {
     testWidgets('muestra la etiqueta correctamente', (tester) async {
       const String chipLabel = 'Etiqueta de prueba';
-      
+
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: Center(
-              child: AppChip(
-                label: chipLabel,
-              ),
-            ),
+            body: Center(child: AppChip(label: chipLabel)),
           ),
         ),
       );
@@ -26,15 +22,12 @@ void main() {
 
     testWidgets('aplica el color de fondo correctamente', (tester) async {
       const Color backgroundColor = AppColors.verdeCampo;
-      
+
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppChip(
-                label: 'Test',
-                backgroundColor: backgroundColor,
-              ),
+              child: AppChip(label: 'Test', backgroundColor: backgroundColor),
             ),
           ),
         ),
@@ -47,15 +40,12 @@ void main() {
 
     testWidgets('muestra el icono cuando se proporciona', (tester) async {
       const IconData testIcon = Icons.golf_course;
-      
+
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppChip(
-                label: 'Test',
-                icon: testIcon,
-              ),
+              child: AppChip(label: 'Test', icon: testIcon),
             ),
           ),
         ),
@@ -65,16 +55,14 @@ void main() {
       expect(find.byIcon(testIcon), findsOneWidget);
     });
 
-    testWidgets('muestra el icono de eliminar cuando deleteIcon=true', (tester) async {
+    testWidgets('muestra el icono de eliminar cuando deleteIcon=true', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppChip(
-                label: 'Test',
-                deleteIcon: true,
-                onDeleted: () {},
-              ),
+              child: AppChip(label: 'Test', deleteIcon: true, onDeleted: () {}),
             ),
           ),
         ),
@@ -85,9 +73,11 @@ void main() {
       expect(chip.onDeleted, isNotNull);
     });
 
-    testWidgets('ejecuta onTap cuando se presiona un chip seleccionable', (tester) async {
+    testWidgets('ejecuta onTap cuando se presiona un chip seleccionable', (
+      tester,
+    ) async {
       bool wasTapped = false;
-      
+
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -105,7 +95,7 @@ void main() {
       // Presionar el chip
       await tester.tap(find.byType(FilterChip));
       await tester.pump();
-      
+
       // Verificar que se ejecutó el callback
       expect(wasTapped, isTrue);
     });
@@ -114,11 +104,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Center(
-              child: AppChip.primary(
-                label: 'Chip Primario',
-              ),
-            ),
+            body: Center(child: AppChip.primary(label: 'Chip Primario')),
           ),
         ),
       );
@@ -126,19 +112,17 @@ void main() {
       // Verificar que el chip tiene el color de texto correcto
       final chip = tester.widget<Chip>(find.byType(Chip));
       final labelStyle = chip.labelStyle as TextStyle;
-      
+
       expect(labelStyle.color, equals(AppColors.zanahoriaIntensa));
     });
 
-    testWidgets('crea un chip secundario con el color correcto', (tester) async {
+    testWidgets('crea un chip secundario con el color correcto', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Center(
-              child: AppChip.secondary(
-                label: 'Chip Secundario',
-              ),
-            ),
+            body: Center(child: AppChip.secondary(label: 'Chip Secundario')),
           ),
         ),
       );
@@ -146,20 +130,18 @@ void main() {
       // Verificar que el chip tiene el color de texto correcto
       final chip = tester.widget<Chip>(find.byType(Chip));
       final labelStyle = chip.labelStyle as TextStyle;
-      
+
       expect(labelStyle.color, equals(AppColors.azulProfundo));
     });
 
-    testWidgets('crea un chip seleccionable cuando selectable=true', (tester) async {
+    testWidgets('crea un chip seleccionable cuando selectable=true', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppChip(
-                label: 'Test',
-                selectable: true,
-                selected: true,
-              ),
+              child: AppChip(label: 'Test', selectable: true, selected: true),
             ),
           ),
         ),
@@ -167,7 +149,7 @@ void main() {
 
       // Verificar que el chip es de tipo FilterChip
       expect(find.byType(FilterChip), findsOneWidget);
-      
+
       // Verificar que está seleccionado
       final filterChip = tester.widget<FilterChip>(find.byType(FilterChip));
       expect(filterChip.selected, isTrue);

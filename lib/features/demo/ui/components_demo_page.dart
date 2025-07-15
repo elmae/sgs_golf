@@ -13,9 +13,7 @@ class ComponentsDemoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Componentes SGS Golf'),
-      ),
+      appBar: AppBar(title: const Text('Componentes SGS Golf')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -24,13 +22,11 @@ class ComponentsDemoPage extends StatelessWidget {
             // Tarjetas
             const _SectionTitle('Tarjetas'),
             const SizedBox(height: 8),
-            
+
             // Tarjeta básica
-            const AppCard(
-              child: Text('Tarjeta básica'),
-            ),
+            const AppCard(child: Text('Tarjeta básica')),
             const SizedBox(height: 16),
-            
+
             // Tarjeta con encabezado
             const AppCard(
               headerTitle: 'Tarjeta con encabezado',
@@ -38,14 +34,14 @@ class ComponentsDemoPage extends StatelessWidget {
               child: Text('Contenido de la tarjeta'),
             ),
             const SizedBox(height: 16),
-            
+
             // Tarjeta con borde de color
             const AppCard(
               borderColor: AppColors.zanahoriaIntensa,
               child: Text('Tarjeta con borde'),
             ),
             const SizedBox(height: 16),
-            
+
             // Tarjeta con acción
             AppCard(
               onTap: () {
@@ -56,19 +52,16 @@ class ComponentsDemoPage extends StatelessWidget {
               child: const Text('Tarjeta presionable (toca aquí)'),
             ),
             const SizedBox(height: 24),
-            
+
             // Botones
             const _SectionTitle('Botones'),
             const SizedBox(height: 8),
-            
+
             // Botones principales
             Row(
               children: [
                 Expanded(
-                  child: AppButton.primary(
-                    text: 'Primario',
-                    onPressed: () {},
-                  ),
+                  child: AppButton.primary(text: 'Primario', onPressed: () {}),
                 ),
                 const SizedBox(width: 8),
                 Expanded(
@@ -80,47 +73,35 @@ class ComponentsDemoPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            
+
             // Botones accent y danger
             Row(
               children: [
                 Expanded(
-                  child: AppButton.accent(
-                    text: 'Accent',
-                    onPressed: () {},
-                  ),
+                  child: AppButton.accent(text: 'Accent', onPressed: () {}),
                 ),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: AppButton.danger(
-                    text: 'Danger',
-                    onPressed: () {},
-                  ),
+                  child: AppButton.danger(text: 'Danger', onPressed: () {}),
                 ),
               ],
             ),
             const SizedBox(height: 8),
-            
+
             // Botones texto y outlined
             Row(
               children: [
                 Expanded(
-                  child: AppButton.text(
-                    text: 'Texto',
-                    onPressed: () {},
-                  ),
+                  child: AppButton.text(text: 'Texto', onPressed: () {}),
                 ),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: AppButton.outlined(
-                    text: 'Outlined',
-                    onPressed: () {},
-                  ),
+                  child: AppButton.outlined(text: 'Outlined', onPressed: () {}),
                 ),
               ],
             ),
             const SizedBox(height: 8),
-            
+
             // Botones con icono
             Row(
               children: [
@@ -142,7 +123,7 @@ class ComponentsDemoPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            
+
             // Botón de ancho completo
             AppButton.primary(
               text: 'Botón ancho completo',
@@ -150,7 +131,7 @@ class ComponentsDemoPage extends StatelessWidget {
               onPressed: () {},
             ),
             const SizedBox(height: 8),
-            
+
             // Botón con estado de carga
             AppButton.primary(
               text: 'Cargando',
@@ -159,11 +140,11 @@ class ComponentsDemoPage extends StatelessWidget {
               onPressed: () {},
             ),
             const SizedBox(height: 24),
-            
+
             // Chips
             const _SectionTitle('Chips'),
             const SizedBox(height: 8),
-            
+
             // Chips simples
             Wrap(
               spacing: 8,
@@ -176,7 +157,7 @@ class ComponentsDemoPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            
+
             // Chips con iconos
             Wrap(
               spacing: 8,
@@ -189,7 +170,7 @@ class ComponentsDemoPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            
+
             // Chips eliminables
             Wrap(
               spacing: 8,
@@ -208,7 +189,7 @@ class ComponentsDemoPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            
+
             // Chips seleccionables
             _ChipSelectionDemo(),
             const SizedBox(height: 32),
@@ -270,7 +251,9 @@ class _ChipSelectionDemoState extends State<_ChipSelectionDemo> {
               label: option,
               selectable: true,
               selected: isSelected,
-              backgroundColor: AppColors.zanahoriaIntensa.withAlpha(26), // alpha 26 ~ opacity 0.1
+              backgroundColor: AppColors.zanahoriaIntensa.withAlpha(
+                26,
+              ), // alpha 26 ~ opacity 0.1
               textColor: AppColors.zanahoriaIntensa,
               onTap: () {
                 setState(() {
