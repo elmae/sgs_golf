@@ -4,6 +4,7 @@ import 'package:sgs_golf/core/navigation/app_router.dart';
 import 'package:sgs_golf/core/theme/app_theme.dart';
 import 'package:sgs_golf/features/dashboard/providers/dashboard_provider.dart';
 import 'package:sgs_golf/features/dashboard/session_list_widget.dart';
+import 'package:sgs_golf/features/demo/routes.dart';
 
 /// Pantalla principal que sirve como hub central de la aplicación
 ///
@@ -226,26 +227,49 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Widget _buildQuickAccessButtons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Column(
       children: [
-        _buildQuickAccessButton(
-          'Práctica',
-          Icons.sports_golf,
-          AppColors.verdeCampo,
-          () => Navigator.of(context).pushNamed(AppRoutes.practice),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _buildQuickAccessButton(
+              'Práctica',
+              Icons.sports_golf,
+              AppColors.verdeCampo,
+              () => Navigator.of(context).pushNamed(AppRoutes.practice),
+            ),
+            _buildQuickAccessButton(
+              'Análisis',
+              Icons.bar_chart,
+              AppColors.azulProfundo,
+              () => Navigator.of(context).pushNamed(AppRoutes.analysis),
+            ),
+            _buildQuickAccessButton(
+              'Exportar',
+              Icons.file_download,
+              AppColors.zanahoriaIntensa,
+              () => Navigator.of(context).pushNamed(AppRoutes.export),
+            ),
+          ],
         ),
-        _buildQuickAccessButton(
-          'Análisis',
-          Icons.bar_chart,
-          AppColors.azulProfundo,
-          () => Navigator.of(context).pushNamed(AppRoutes.analysis),
-        ),
-        _buildQuickAccessButton(
-          'Exportar',
-          Icons.file_download,
-          AppColors.zanahoriaIntensa,
-          () => Navigator.of(context).pushNamed(AppRoutes.export),
+        const SizedBox(height: 12),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _buildQuickAccessButton(
+              'Demo UI',
+              Icons.palette,
+              AppColors.grisOscuro,
+              () => Navigator.of(context).pushNamed(DemoRoutes.componentsDemo),
+            ),
+            _buildQuickAccessButton(
+              'Componentes',
+              Icons.design_services,
+              AppColors.azulProfundo,
+              () =>
+                  Navigator.of(context).pushNamed(DemoRoutes.uiComponentsDemo),
+            ),
+          ],
         ),
       ],
     );

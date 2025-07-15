@@ -9,8 +9,10 @@ import 'package:sgs_golf/features/analysis/analysis_screen.dart';
 import 'package:sgs_golf/features/auth/login_screen.dart';
 import 'package:sgs_golf/features/dashboard/dashboard_screen.dart';
 import 'package:sgs_golf/features/dashboard/providers/dashboard_provider.dart';
+import 'package:sgs_golf/features/demo/routes.dart';
 import 'package:sgs_golf/features/export/export_screen.dart';
 import 'package:sgs_golf/features/practice/practice_screen.dart';
+import 'package:sgs_golf/features/practice/providers/practice_provider.dart';
 
 /// Aplicación principal SGS Golf
 class SGSGolfApp extends StatelessWidget {
@@ -18,12 +20,17 @@ class SGSGolfApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final practiceRepository = PracticeRepository(
+      Hive.box<PracticeSession>('practiceSessions'),
+    );
+    
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => DashboardProvider(
-            PracticeRepository(Hive.box<PracticeSession>('practiceSessions')),
-          ),
+          create: (_) => DashboardProvider(practiceRepository),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => PracticeProvider(practiceRepository),
         ),
         // Otros providers de la aplicación
       ],
@@ -38,6 +45,8 @@ class SGSGolfApp extends StatelessWidget {
           AppRoutes.practice: (context) => const PracticeScreen(),
           AppRoutes.analysis: (context) => const AnalysisScreen(),
           AppRoutes.export: (context) => const ExportScreen(),
+          // Rutas para páginas de demostración
+          ...DemoRoutes.routes(),
         },
       ),
     );
