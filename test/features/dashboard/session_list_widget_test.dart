@@ -62,8 +62,8 @@ void main() {
     expect(find.text('Sesión de prueba 2'), findsOneWidget);
 
     // Verificar que la duración se muestra correctamente
-    expect(find.text('Duración: 45 minutos'), findsOneWidget);
-    expect(find.text('Duración: 30 minutos'), findsOneWidget);
+    expect(find.text('45 min'), findsOneWidget);
+    expect(find.text('30 min'), findsOneWidget);
 
     // Probar la interacción de tap
     await tester.tap(find.text('Sesión de prueba 1'));

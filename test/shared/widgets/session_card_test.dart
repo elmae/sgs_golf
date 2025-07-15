@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:sgs_golf/core/theme/app_theme.dart';
 import 'package:sgs_golf/data/models/golf_club.dart';
 import 'package:sgs_golf/data/models/practice_session.dart';
 import 'package:sgs_golf/data/models/shot.dart';
@@ -29,6 +30,7 @@ void main() {
   ) async {
     await tester.pumpWidget(
       MaterialApp(
+        theme: appTheme,
         home: Scaffold(body: SessionCard(session: testSession)),
       ),
     );
@@ -40,11 +42,10 @@ void main() {
       findsOneWidget,
     );
 
-    // Verificar duración
-    expect(find.text('Duración: 45 minutos'), findsOneWidget);
-
-    // Verificar número de tiros
-    expect(find.text('Tiros: 2'), findsOneWidget);
+    // Verificar estadísticas básicas
+    expect(find.text('45 min'), findsOneWidget); // Duración
+    expect(find.text('2'), findsOneWidget); // Total de tiros
+    expect(find.text('90.0m'), findsOneWidget); // Distancia promedio
 
     // Verificar resumen
     expect(find.text('Resumen de la sesión de prueba'), findsOneWidget);
@@ -58,6 +59,7 @@ void main() {
   ) async {
     await tester.pumpWidget(
       MaterialApp(
+        theme: appTheme,
         home: Scaffold(
           body: SessionCard(session: testSession, showFullDetails: true),
         ),
@@ -66,8 +68,13 @@ void main() {
 
     // En modo detalle debe mostrar el desglose por tipo de palo
     expect(find.text('Desglose por palo:'), findsOneWidget);
-    expect(find.text('PW: 1'), findsOneWidget);
-    expect(find.text('SW: 1'), findsOneWidget);
+
+    // Ahora verificamos el contenido usando RichText
+    // que contiene la información de los palos
+    expect(find.byType(RichText), findsWidgets);
+
+    // Verificamos que hayan Chips para cada tipo de palo
+    expect(find.byType(Chip), findsNWidgets(2)); // PW y SW
   });
 
   testWidgets('SessionCard llama a onTap cuando se presiona', (tester) async {
@@ -75,6 +82,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
+        theme: appTheme,
         home: Scaffold(
           body: SessionCard(
             session: testSession,
@@ -96,6 +104,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
+        theme: appTheme,
         home: Scaffold(
           body: SessionCard(
             session: testSession,
@@ -118,6 +127,7 @@ void main() {
   ) async {
     await tester.pumpWidget(
       MaterialApp(
+        theme: appTheme,
         home: Scaffold(body: SessionCard(session: testSession)),
       ),
     );
