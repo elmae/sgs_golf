@@ -5,6 +5,8 @@ import 'package:sgs_golf/core/theme/app_theme.dart';
 import 'package:sgs_golf/features/dashboard/providers/dashboard_provider.dart';
 import 'package:sgs_golf/features/dashboard/session_list_widget.dart';
 import 'package:sgs_golf/features/demo/routes.dart';
+import 'package:sgs_golf/shared/widgets/app_empty_state_widget.dart';
+import 'package:sgs_golf/shared/widgets/app_loading_widget.dart';
 
 /// Pantalla principal que sirve como hub central de la aplicación
 ///
@@ -65,7 +67,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: Consumer<DashboardProvider>(
           builder: (context, dashboardProvider, child) {
             if (dashboardProvider.isLoading) {
-              return const Center(child: CircularProgressIndicator());
+              return const AppLoadingWidget(
+                message: 'Cargando sesiones...',
+                showBackground: true,
+              );
             }
 
             if (dashboardProvider.error != null) {
@@ -95,7 +100,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
             }
 
             if (dashboardProvider.sessions.isEmpty) {
-              return _buildEmptyState();
+              return AppEmptyStateWidget(
+                icon: Icons.sports_golf,
+                title: 'No hay sesiones',
+                message: 'Aún no has registrado ninguna sesión de práctica',
+                buttonText: 'Crear sesión',
+                onButtonPressed: () =>
+                    Navigator.pushNamed(context, AppRoutes.practice),
+              );
             }
 
             return _buildDashboardContent(dashboardProvider);
@@ -109,39 +121,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
         label: const Text('Nueva Práctica'),
         icon: const Icon(Icons.add),
         backgroundColor: AppColors.verdeCampo,
-      ),
-    );
-  }
-
-  Widget _buildEmptyState() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.sports_golf, size: 72, color: AppColors.grisOscuro),
-          const SizedBox(height: 16),
-          const Text(
-            '¡Bienvenido a SGS Golf!',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32),
-            child: Text(
-              'Comienza registrando tu primera sesión de práctica',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          const SizedBox(height: 24),
-          ElevatedButton.icon(
-            icon: const Icon(Icons.add),
-            label: const Text('Iniciar práctica'),
-            onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.practice);
-            },
-          ),
-        ],
       ),
     );
   }
