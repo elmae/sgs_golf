@@ -289,16 +289,54 @@ class _DashboardScreenState extends State<DashboardScreen> {
         padding: const EdgeInsets.symmetric(vertical: 12),
         child: Column(
           children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: color.withAlpha(25),
-                shape: BoxShape.circle,
+            Hero(
+              tag: 'hero-icon-$label',
+              flightShuttleBuilder:
+                  (
+                    flightContext,
+                    animation,
+                    flightDirection,
+                    fromHeroContext,
+                    toHeroContext,
+                  ) {
+                    // Personalizar la animación del Hero
+                    return AnimatedBuilder(
+                      animation: animation,
+                      child: Icon(icon, color: color, size: 28),
+                      builder: (context, child) {
+                        return Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: color.withAlpha(
+                              25 + (animation.value * 50).toInt(),
+                            ),
+                            shape: BoxShape.circle,
+                          ),
+                          child: child,
+                        );
+                      },
+                    );
+                  },
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: color.withAlpha(25),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(icon, color: color, size: 28),
               ),
-              child: Icon(icon, color: color, size: 28),
             ),
             const SizedBox(height: 8),
-            Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
+            Hero(
+              tag: 'hero-text-$label',
+              child: Material(
+                color: Colors.transparent,
+                child: Text(
+                  label,
+                  style: const TextStyle(fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
           ],
         ),
       ),

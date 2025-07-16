@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sgs_golf/core/theme/app_theme.dart';
+import 'package:sgs_golf/shared/utils/animation_utils.dart';
 
 /// Enum que define los tipos de botones disponibles en la aplicación
 enum AppButtonType {
@@ -295,7 +296,33 @@ class AppButton extends StatelessWidget {
       buttonWidget = SizedBox(width: double.infinity, child: buttonWidget);
     }
 
-    return buttonWidget;
+    // Envolver en animaciones sutiles
+    return AnimationUtils.fadeInAnimation(
+      duration: AnimationUtils.quickDuration,
+      child: AnimatedContainer(
+        duration: AnimationUtils.defaultDuration,
+        curve: Curves.easeInOut,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: [
+            if (onPressed != null &&
+                type != AppButtonType.text &&
+                type != AppButtonType.outlined)
+              BoxShadow(
+                color: Color.fromARGB(
+                  (255 * 0.3).round(),
+                  (buttonColors['background']!.r * 255.0).round(),
+                  (buttonColors['background']!.g * 255.0).round(),
+                  (buttonColors['background']!.b * 255.0).round(),
+                ),
+                blurRadius: 8,
+                offset: const Offset(0, 2),
+              ),
+          ],
+        ),
+        child: buttonWidget,
+      ),
+    );
   }
 
   /// Construye el contenido interno del botón (texto, icono, indicador de carga)

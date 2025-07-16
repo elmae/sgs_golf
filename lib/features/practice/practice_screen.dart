@@ -84,7 +84,29 @@ class _PracticeScreenState extends State<PracticeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sesión de Práctica'),
+        title: Row(
+          children: [
+            Hero(
+              tag: 'hero-icon-Práctica',
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.green.withAlpha(25),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(Icons.sports_golf, size: 24),
+              ),
+            ),
+            const SizedBox(width: 8),
+            const Hero(
+              tag: 'hero-text-Práctica',
+              child: Material(
+                color: Colors.transparent,
+                child: Text('Sesión de Práctica'),
+              ),
+            ),
+          ],
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.save),

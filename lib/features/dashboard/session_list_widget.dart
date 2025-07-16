@@ -4,6 +4,7 @@ import 'package:sgs_golf/core/theme/app_theme.dart';
 import 'package:sgs_golf/data/models/golf_club.dart';
 import 'package:sgs_golf/data/models/practice_session.dart';
 import 'package:sgs_golf/features/dashboard/providers/dashboard_provider.dart';
+import 'package:sgs_golf/shared/utils/animation_utils.dart';
 import 'package:sgs_golf/shared/widgets/session_card.dart';
 
 /// Widget que muestra una lista desplazable de sesiones de práctica.
@@ -57,17 +58,20 @@ class _SessionListWidgetState extends State<SessionListWidget> {
     // Si no hay sesiones y no se muestran filtros, mostrar mensaje
     if (widget.sessions.isEmpty && !widget.showFilters) {
       return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.sports_golf, size: 48, color: Colors.grey),
-            const SizedBox(height: 16),
-            Text(
-              widget.emptyMessage,
-              style: const TextStyle(fontSize: 16, color: Colors.grey),
-              textAlign: TextAlign.center,
-            ),
-          ],
+        child: AnimationUtils.fadeSlideInAnimation(
+          duration: const Duration(milliseconds: 500),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.sports_golf, size: 48, color: Colors.grey),
+              const SizedBox(height: 16),
+              Text(
+                widget.emptyMessage,
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       );
     }
@@ -125,24 +129,9 @@ class _SessionListWidgetState extends State<SessionListWidget> {
                 itemCount: displaySessions.length,
                 itemBuilder: (context, index) {
                   final session = displaySessions[index];
-                  return SessionCard(
-                    session: session,
-                    onTap: widget.onSessionTap != null
-                        ? () => widget.onSessionTap!(session)
-                        : null,
-                    onDelete: widget.onSessionDelete != null
-                        ? () => widget.onSessionDelete!(session)
-                        : null,
-                    showFullDetails: widget.showFullDetails,
-                  );
-                },
-              )
-            : Flexible(
-                child: ListView.builder(
-                  itemCount: displaySessions.length,
-                  itemBuilder: (context, index) {
-                    final session = displaySessions[index];
-                    return SessionCard(
+                  return AnimationUtils.animatedListItem(
+                    index: index,
+                    child: SessionCard(
                       session: session,
                       onTap: widget.onSessionTap != null
                           ? () => widget.onSessionTap!(session)
@@ -151,6 +140,27 @@ class _SessionListWidgetState extends State<SessionListWidget> {
                           ? () => widget.onSessionDelete!(session)
                           : null,
                       showFullDetails: widget.showFullDetails,
+                    ),
+                  );
+                },
+              )
+            : Flexible(
+                child: ListView.builder(
+                  itemCount: displaySessions.length,
+                  itemBuilder: (context, index) {
+                    final session = displaySessions[index];
+                    return AnimationUtils.animatedListItem(
+                      index: index,
+                      child: SessionCard(
+                        session: session,
+                        onTap: widget.onSessionTap != null
+                            ? () => widget.onSessionTap!(session)
+                            : null,
+                        onDelete: widget.onSessionDelete != null
+                            ? () => widget.onSessionDelete!(session)
+                            : null,
+                        showFullDetails: widget.showFullDetails,
+                      ),
                     );
                   },
                 ),

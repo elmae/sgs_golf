@@ -12,6 +12,7 @@ Sigue este flujo para abordar cualquier issue en este proyecto en el repositorio
   - [`tasks-prd-sgs-golf.md`](docs/tasks-prd-sgs-golf.md)
   - [`knowledge-base.md`](docs/knowledge-base.md) 
 - Si el issue es ambiguo, solicita aclaraciones antes de continuar.
+- Antes de documentar o implementar dependencias/APIs, consulta el MCP context7 para validar que sean actuales y recomendadas.
  
 --- 
 
@@ -55,14 +56,13 @@ Sigue este flujo para abordar cualquier issue en este proyecto en el repositorio
 
 ---
 
-### 5. ✅ Valida y prueba
+### 5. ✅ Flujo de Trabajo para Pruebas en SGS Golf
 
-- Ejecutar `dart format .` para formatear el código según las convenciones de estilo de Dart.
-- Ejecutar `flutter test` y asegúrate de que todas las pruebas pasen. Si alguna prueba falla, corrige todos los errores reportados y vuelve a ejecutar los tests hasta que el resultado sea completamente exitoso.
-- Corre el análisis estático con `flutter analyze`. Si se detectan advertencias o errores, repáralos completamente y vuelve a ejecutar el comando hasta obtener una salida limpia.
-- Si agregas dependencias, actualiza y documenta los cambios en `pubspec.yaml`.
+Proceso detallado para ejecutar pruebas, validar el código y resolver errores en el proyecto SGS Golf, sigue las instrucciones detalladas en:
+- [`testing-workflow.md`](testing-workflow.md)
 
----
+
+---`
 
 ### 6. 📤 Guarda y sube tus cambios
 
@@ -70,7 +70,7 @@ Sigue este flujo para abordar cualquier issue en este proyecto en el repositorio
 - Agrega los archivos modificados con `git add .`.
 - Realiza un `git commit` siguiendo las convenciones de commits:
   - Usa mensajes descriptivos y claros.
-  - Los mensajes nodeben exceder los 100 caracteres.
+  - Los mensajes no deben exceder los 100 caracteres.
   - Usa el formato de encabezado `tipo(área): descripción breve`.
   - Usa solo letras minusculas.
   - 📌 Ejemplos:
@@ -101,12 +101,6 @@ completa este checklist para asegurarte de que todo está en orden:
 - [ ] Commit realizado con formato convencional
 - [ ] PR enlazado con el issue correspondiente y documentado
 
---- 
-
-> **Referencia rápida:**
-> - Estructura y archivos clave: ver [`tasks-prd-sgs-golf.md`](docs/tasks-prd-sgs-golf.md) y [`knowledge-base.md`](docs/knowledge-base.md)
-> - Criterios de calidad y reglas de colaboración: ver [`knowledge-base.md`](docs/knowledge-base.md)
-> - Antes de documentar o implementar dependencias/APIs, consulta el MCP context7 para validar que sean actuales y recomendadas.
 
 ---
 Estas instrucciones son obligatorias y deben ser seguidas en todo momento cuando se trabaja en este repositorio.

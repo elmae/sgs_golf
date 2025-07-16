@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sgs_golf/core/theme/app_theme.dart';
 import 'package:sgs_golf/features/analysis/charts/consistency_chart_widget.dart';
 import 'package:sgs_golf/features/analysis/charts/distance_chart_widget.dart';
 import 'package:sgs_golf/features/analysis/providers/analysis_provider.dart';
 import 'package:sgs_golf/shared/widgets/animated_date_range_picker.dart';
 import 'package:sgs_golf/shared/widgets/animated_filter_chip.dart';
+import 'package:sgs_golf/core/theme/app_theme.dart';
 
 class AnalysisScreen extends StatefulWidget {
   const AnalysisScreen({super.key});
@@ -14,8 +14,7 @@ class AnalysisScreen extends StatefulWidget {
   State<AnalysisScreen> createState() => _AnalysisScreenState();
 }
 
-class _AnalysisScreenState extends State<AnalysisScreen>
-    with SingleTickerProviderStateMixin {
+class _AnalysisScreenState extends State<AnalysisScreen> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   String _activeFilter = 'distance'; // Filtro inicial
 
@@ -33,42 +32,6 @@ class _AnalysisScreenState extends State<AnalysisScreen>
   void dispose() {
     _animationController.dispose();
     super.dispose();
-  }
-
-  Widget _buildFilterSection() {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            AnimatedFilterChip(
-              label: 'Distancia',
-              icon: Icons.straighten,
-              color: AppColors.verdeCampo,
-              selected: _activeFilter == 'distance',
-              onTap: () => setState(() => _activeFilter = 'distance'),
-            ),
-            const SizedBox(width: 8),
-            AnimatedFilterChip(
-              label: 'Consistencia',
-              icon: Icons.timeline,
-              color: AppColors.azulProfundo,
-              selected: _activeFilter == 'consistency',
-              onTap: () => setState(() => _activeFilter = 'consistency'),
-            ),
-            const SizedBox(width: 8),
-            AnimatedFilterChip(
-              label: 'Progresión',
-              icon: Icons.trending_up,
-              color: AppColors.zanahoriaIntensa,
-              selected: _activeFilter == 'progression',
-              onTap: () => setState(() => _activeFilter = 'progression'),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   @override
@@ -90,9 +53,9 @@ class _AnalysisScreenState extends State<AnalysisScreen>
               ),
             ),
             const SizedBox(width: 8),
-            const Hero(
+            Hero(
               tag: 'hero-text-Análisis',
-              child: Material(
+              child: const Material(
                 color: Colors.transparent,
                 child: Text('Análisis de Sesiones'),
               ),
@@ -107,24 +70,24 @@ class _AnalysisScreenState extends State<AnalysisScreen>
           children: [
             // Filtros animados
             _buildFilterSection(),
-
+            
             // Selector de fechas animado
             AnimatedDateRangePicker(
               title: 'Rango de fechas',
               color: AppColors.azulProfundo,
-              selectedRange: provider.selectedSession != null
-                  ? DateTimeRange(
-                      start: provider.selectedSession!.date,
-                      end: provider.selectedSession!.date,
-                    )
-                  : null,
+              selectedRange: provider.selectedSession != null 
+                ? DateTimeRange(
+                    start: provider.selectedSession!.date,
+                    end: provider.selectedSession!.date,
+                  ) 
+                : null,
               onRangeSelected: (range) {
                 // Aquí se implementaría la lógica para filtrar por rango
               },
             ),
-
+            
             const SizedBox(height: 16),
-
+            
             // Selector de sesión
             Card(
               elevation: 2,
@@ -160,19 +123,19 @@ class _AnalysisScreenState extends State<AnalysisScreen>
                 ),
               ),
             ),
-
+            
             const SizedBox(height: 16),
-
+            
             // Gráficos con animación
             AnimatedSwitcher(
               duration: const Duration(milliseconds: 300),
-              child: _activeFilter == 'distance'
-                  ? const DistanceChartWidget(key: ValueKey('distance'))
-                  : const ConsistencyChartWidget(key: ValueKey('consistency')),
+              child: _activeFilter == 'distance' 
+                ? const DistanceChartWidget(key: ValueKey('distance'))
+                : const ConsistencyChartWidget(key: ValueKey('consistency')),
             ),
-
+            
             const SizedBox(height: 16),
-
+            
             // Sección de comparación
             Card(
               elevation: 2,
@@ -205,32 +168,23 @@ class _AnalysisScreenState extends State<AnalysisScreen>
                             );
                           })
                           .toList(),
-                      onChanged: (session) =>
-                          provider.selectCompareSession(session),
+                      onChanged: (session) => provider.selectCompareSession(session),
                     ),
-
+                    
                     if (provider.compareSession != null)
                       Container(
                         margin: const EdgeInsets.only(top: 8),
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: AppColors.azulProfundo.withAlpha(
-                            26,
-                          ), // 0.1 * 255 = 25.5 ≈ 26
+                          color: AppColors.azulProfundo.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(
-                            color: AppColors.azulProfundo.withAlpha(
-                              77,
-                            ), // 0.3 * 255 = 76.5 ≈ 77
+                            color: AppColors.azulProfundo.withOpacity(0.3),
                           ),
                         ),
                         child: Row(
                           children: [
-                            const Icon(
-                              Icons.compare_arrows,
-                              size: 16,
-                              color: AppColors.azulProfundo,
-                            ),
+                            const Icon(Icons.compare_arrows, size: 16, color: AppColors.azulProfundo),
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
@@ -245,22 +199,19 @@ class _AnalysisScreenState extends State<AnalysisScreen>
                               icon: const Icon(Icons.close, size: 16),
                               padding: EdgeInsets.zero,
                               constraints: const BoxConstraints(),
-                              onPressed: () =>
-                                  provider.selectCompareSession(null),
+                              onPressed: () => provider.clearCompareSession(),
                               color: AppColors.azulProfundo,
-                            ),
+                            )
                           ],
                         ),
                       ),
-
+                      
                     if (provider.compareSession != null)
                       Container(
                         margin: const EdgeInsets.only(top: 8),
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.grey.withAlpha(
-                            26,
-                          ), // 0.1 * 255 = 25.5 ≈ 26
+                          color: Colors.grey.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Column(
@@ -273,17 +224,15 @@ class _AnalysisScreenState extends State<AnalysisScreen>
                             const SizedBox(height: 4),
                             ...provider.comparisonByClub.entries.map(
                               (e) => Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 2.0,
-                                ),
+                                padding: const EdgeInsets.symmetric(vertical: 2.0),
                                 child: Text(
                                   '${e.key.name.toUpperCase()}: ${e.value.toStringAsFixed(1)} m',
                                   style: TextStyle(
-                                    color: e.value > 0
-                                        ? AppColors.verdeCampo
-                                        : e.value < 0
-                                        ? AppColors.rojoAlerta
-                                        : Colors.grey,
+                                    color: e.value > 0 
+                                      ? AppColors.verdeCampo 
+                                      : e.value < 0 
+                                          ? AppColors.rojoAlerta 
+                                          : Colors.grey,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -295,6 +244,42 @@ class _AnalysisScreenState extends State<AnalysisScreen>
                   ],
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+  
+  Widget _buildFilterSection() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            AnimatedFilterChip(
+              label: 'Distancia',
+              icon: Icons.straighten,
+              color: AppColors.verdeCampo,
+              selected: _activeFilter == 'distance',
+              onTap: () => setState(() => _activeFilter = 'distance'),
+            ),
+            const SizedBox(width: 8),
+            AnimatedFilterChip(
+              label: 'Consistencia',
+              icon: Icons.timeline,
+              color: AppColors.azulProfundo,
+              selected: _activeFilter == 'consistency',
+              onTap: () => setState(() => _activeFilter = 'consistency'),
+            ),
+            const SizedBox(width: 8),
+            AnimatedFilterChip(
+              label: 'Progresión',
+              icon: Icons.trending_up,
+              color: AppColors.zanahoriaIntensa,
+              selected: _activeFilter == 'progression',
+              onTap: () => setState(() => _activeFilter = 'progression'),
             ),
           ],
         ),

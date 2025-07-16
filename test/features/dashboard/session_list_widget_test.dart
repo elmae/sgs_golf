@@ -57,6 +57,9 @@ void main() {
       ),
     );
 
+    // Esperar a que terminen las animaciones
+    await tester.pumpAndSettle();
+
     // Verificar que las sesiones se muestran
     expect(find.text('Sesión de prueba 1'), findsOneWidget);
     expect(find.text('Sesión de prueba 2'), findsOneWidget);
@@ -67,10 +70,12 @@ void main() {
 
     // Probar la interacción de tap
     await tester.tap(find.text('Sesión de prueba 1'));
+    await tester.pumpAndSettle();
     expect(tapCalled, isTrue);
 
     // Probar la interacción de eliminar
     await tester.tap(find.byIcon(Icons.delete).first);
+    await tester.pumpAndSettle();
     expect(deleteCalled, isTrue);
   });
 
@@ -86,6 +91,8 @@ void main() {
         ),
       ),
     );
+
+    await tester.pumpAndSettle();
 
     // Verificar que se muestra el mensaje de vacío
     expect(find.text(testMessage), findsOneWidget);
@@ -105,6 +112,8 @@ void main() {
         ),
       ),
     );
+
+    await tester.pumpAndSettle();
 
     // Verificar que solo se muestra la primera sesión
     expect(find.text('Sesión de prueba 1'), findsOneWidget);
@@ -144,6 +153,8 @@ void main() {
         ),
       );
 
+      await tester.pumpAndSettle();
+
       // Verificar que se muestran los botones de filtro y ordenamiento
       expect(find.text('Ordenar'), findsOneWidget);
       expect(find.text('Filtrar'), findsOneWidget);
@@ -171,6 +182,8 @@ void main() {
           ),
         ),
       );
+
+      await tester.pumpAndSettle();
 
       // Tap en el botón de ordenar
       await tester.tap(find.text('Ordenar'));
@@ -208,6 +221,8 @@ void main() {
         ),
       );
 
+      await tester.pumpAndSettle();
+
       // Tap en el botón de filtrar
       await tester.tap(find.text('Filtrar'));
       await tester.pumpAndSettle();
@@ -244,6 +259,8 @@ void main() {
             ),
           ),
         );
+
+        await tester.pumpAndSettle();
 
         // Verificar que se muestra el mensaje de filtros sin resultados
         expect(
