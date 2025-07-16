@@ -123,13 +123,13 @@ void main() {
     // Esperar a que se complete la carga
     await tester.pumpAndSettle();
 
-    // Verificar mensaje de bienvenida
-    expect(find.text('¡Bienvenido a SGS Golf!'), findsOneWidget);
+    // Verificar mensaje de bienvenida con el nuevo componente
+    expect(find.text('No hay sesiones'), findsOneWidget);
     expect(
-      find.text('Comienza registrando tu primera sesión de práctica'),
+      find.text('Aún no has registrado ninguna sesión de práctica'),
       findsOneWidget,
     );
-    expect(find.text('Iniciar práctica'), findsOneWidget);
+    expect(find.text('Crear sesión'), findsOneWidget);
   });
 
   testWidgets('DashboardScreen muestra error cuando falla la carga', (

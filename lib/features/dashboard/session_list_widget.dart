@@ -5,6 +5,7 @@ import 'package:sgs_golf/data/models/golf_club.dart';
 import 'package:sgs_golf/data/models/practice_session.dart';
 import 'package:sgs_golf/features/dashboard/providers/dashboard_provider.dart';
 import 'package:sgs_golf/shared/utils/animation_utils.dart';
+import 'package:sgs_golf/shared/widgets/app_empty_state_widget.dart';
 import 'package:sgs_golf/shared/widgets/session_card.dart';
 
 /// Widget que muestra una lista desplazable de sesiones de práctica.
@@ -55,23 +56,16 @@ class _SessionListWidgetState extends State<SessionListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // Si no hay sesiones y no se muestran filtros, mostrar mensaje
+    // Si no hay sesiones y no se muestran filtros, mostrar el estado vacío
     if (widget.sessions.isEmpty && !widget.showFilters) {
-      return Center(
-        child: AnimationUtils.fadeSlideInAnimation(
-          duration: const Duration(milliseconds: 500),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.sports_golf, size: 48, color: Colors.grey),
-              const SizedBox(height: 16),
-              Text(
-                widget.emptyMessage,
-                style: const TextStyle(fontSize: 16, color: Colors.grey),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
+      return AnimationUtils.fadeSlideInAnimation(
+        duration: const Duration(milliseconds: 500),
+        child: AppEmptyStateWidget(
+          icon: Icons.sports_golf,
+          title: 'Sin sesiones',
+          message: widget.emptyMessage,
+          buttonText: 'Crear sesión',
+          onButtonPressed: () => Navigator.pushNamed(context, '/practice'),
         ),
       );
     }
