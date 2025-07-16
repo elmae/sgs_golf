@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sgs_golf/core/theme/app_theme.dart';
+import 'package:sgs_golf/shared/utils/animation_utils.dart';
 
 /// Tarjeta personalizable que sigue el diseño y paleta de colores de SGS Golf.
 ///
 /// Este componente está diseñado para ser reutilizado en toda la aplicación,
 /// proporcionando una apariencia consistente para mostrar información y contenido.
+/// Incluye animaciones sutiles para mejorar la experiencia del usuario.
 class AppCard extends StatelessWidget {
   /// Contenido principal de la tarjeta
   final Widget child;
@@ -135,9 +137,21 @@ class AppCard extends StatelessWidget {
   }
 
   /// Envuelve el contenido en un InkWell si existe onTap
+  /// Añade animaciones sutiles para mejorar la experiencia al interactuar
   Widget _wrapWithInkWell(Widget content, BorderRadius borderRadius) {
-    if (onTap == null) return content;
+    if (onTap == null) return AnimationUtils.fadeInAnimation(child: content);
 
-    return InkWell(onTap: onTap, borderRadius: borderRadius, child: content);
+    return AnimatedContainer(
+      duration: AnimationUtils.defaultDuration,
+      curve: AnimationUtils.defaultCurve,
+      child: AnimationUtils.scaleTapAnimation(
+        onTap: onTap,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: borderRadius,
+          child: content,
+        ),
+      ),
+    );
   }
 }
