@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sgs_golf/shared/widgets/fade_slide_in_animation.dart';
+import 'package:sgs_golf/shared/utils/animation_utils.dart';
 
 /// Pantalla para exportación de datos y reportes
 class ExportScreen extends StatefulWidget {
@@ -62,9 +62,7 @@ class _ExportScreenState extends State<ExportScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            FadeSlideInAnimation(
-              delay: 0.1,
-              controller: _animationController,
+            AnimationUtils.fadeSlideInAnimation(
               child: const Card(
                 elevation: 4,
                 child: Padding(
@@ -89,9 +87,7 @@ class _ExportScreenState extends State<ExportScreen>
               ),
             ),
             const SizedBox(height: 16),
-            FadeSlideInAnimation(
-              delay: 0.2,
-              controller: _animationController,
+            AnimationUtils.fadeSlideInAnimation(
               child: Card(
                 elevation: 4,
                 child: Padding(
@@ -107,9 +103,7 @@ class _ExportScreenState extends State<ExportScreen>
                         ),
                       ),
                       const SizedBox(height: 12),
-                      FadeSlideInAnimation(
-                        delay: 0.3,
-                        controller: _animationController,
+                      AnimationUtils.fadeSlideInAnimation(
                         child: ListTile(
                           leading: const Icon(Icons.table_chart),
                           title: const Text('CSV'),
@@ -124,9 +118,7 @@ class _ExportScreenState extends State<ExportScreen>
                           onTap: () {},
                         ),
                       ),
-                      FadeSlideInAnimation(
-                        delay: 0.4,
-                        controller: _animationController,
+                      AnimationUtils.fadeSlideInAnimation(
                         child: ListTile(
                           leading: const Icon(Icons.picture_as_pdf),
                           title: const Text('PDF'),
@@ -147,9 +139,7 @@ class _ExportScreenState extends State<ExportScreen>
               ),
             ),
             const SizedBox(height: 16),
-            FadeSlideInAnimation(
-              delay: 0.5,
-              controller: _animationController,
+            AnimationUtils.fadeSlideInAnimation(
               child: ElevatedButton.icon(
                 onPressed: () {},
                 icon: const Icon(Icons.download),
